@@ -1,0 +1,40 @@
+/proyecto-gastronomia
+│
+├── /app
+│   ├── /controllers
+│   │   ├── RestauranteController.php
+│   │   ├── ComentarioController.php
+│   │   ├── CalificacionController.php
+│   │   ├── UsuarioController.php
+│   │   └── AuthController.php
+│   │
+│   ├── /models
+│   │   ├── Restaurante.php
+│   │   ├── Comentario.php
+│   │   ├── Calificacion.php
+│   │   ├── Usuario.php
+│   │   └── Conexion.php
+│   │
+│   └── /views
+│       ├── /public
+│       │   ├── index.php
+│       │   ├── restaurante.php
+│       │   └── buscar.php
+│       │
+│       ├── /admin
+│       │   ├── dashboard.php
+│       │   ├── restaurantes.php
+│       │   ├── comentarios.php
+│       │   └── usuarios.php
+│       │
+│       └── /partials
+│           ├── header.php
+│           └── footer.php
+│
+├── /public
+│   ├── css/
+│   ├── js/
+│   ├── img/
+│   └── index.php   (archivo de entrada que redirige según ruta)
+│
+└── .htaccess       (para URLs amigables)
