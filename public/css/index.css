@@ -1,4 +1,4 @@
-body {
+  body {
   font-family: sans-serif;
 
 }
@@ -21,144 +21,65 @@ body {
       transform: scale(1.03);
       transition: 0.3s;
     }
-
-
-    .home {
-  background-color: #000000;
-  padding: 30px;
-}
-
-.home h1 {
-  text-align: center;
-  color: rgb(255, 255, 255);
-  margin-bottom: 30px;
-}
-
- .flip-card {
-        background-color: transparent;
-        width: 20rem;
-        height: 350px;
-        perspective: 1000px;
-    }
-    .flip-card-inner {
-        position: relative;
-        width: 100%;
-        height: 100%;
-        transition: transform 0.8s;
-        transform-style: preserve-3d;
-    }
-    .flip-card:hover .flip-card-inner {
-        transform: rotateY(180deg);
-    }
-    .flip-card-front, .flip-card-back {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-        backface-visibility: hidden;
-        border-radius: 10px;
-        overflow: hidden;
-    }
-    .flip-card-front img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
-    .flip-card-back {
-        background-color: #343a40;
-        color: white;
-        transform: rotateY(180deg);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 15px;
-        text-align: center;
+  
+  /* SCROLL HORIZONTAL TARJETAS */
+    .scroll-wrapper {
+      position: relative;
     }
 
-.auspiciadores h1{
-    text-align: center;
-}
+    .scroll-container {
+      display: flex;
+      gap: 1rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      padding: 1rem 0;
+    }
 
-.container1 {
+    .scroll-container::-webkit-scrollbar {
+      height: 0px;
+    }
+    .scroll-container::-webkit-scrollbar-thumb {
+      background: #040404;
+      border-radius: 4px;
+    }
+
+    .scroll-card {
+      flex: 0 0 auto;
+      width: 20rem;
+      scroll-snap-align: start;
+      overflow: hidden;
+    }
+
+    .scroll-card img {
+      height: 200px;
+      object-fit: cover;
+    }
+
+    /* BOTONES */
+    .scroll-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(255,255,255,0.9);
+      border: none;
+      font-size: 2rem;
+      cursor: pointer;
+      padding: 0.3rem 0.6rem;
+      border-radius: 50%;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+      z-index: 10;
+    }
+    .scroll-btn.left { left: -55px; }
+    .scroll-btn.right { right: -55px; }
+
+    .platos-container {
   display: flex;
   gap: 1rem;
-  padding: 110px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 1rem 0;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE y Edge */
 }
 
-.auspiciadores h1 {
-  padding: 30px;
-  color: black;
-}
-
-
-.container1 {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  overflow: hidden;        
-  height: 300px;            
-  position: relative;
-  padding: 20px;
-}
-
-.card-auspiciadores {
-  flex: 1;
-  height: 100%;
-  transition: all 400ms ease;
-  cursor: pointer;
-  overflow: hidden;
-}
-
-.card-auspiciadores > img {
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-/* Movimiento alternado controlado */
-.card-auspiciadores:nth-child(odd) {
-  transform: translateY(-10px);
-}
-
-.card-auspiciadores:nth-child(even) {
-  transform: translateY(10px);
-}
-
-/* Efecto de hover en grupo */
-.container1:hover .card-auspiciadores:not(:hover) {
-  filter: grayscale(50%);
-}
-
-/* Expandir tarjeta sin afectar el layout */
-.card-auspiciadores:hover {
-  flex: 1.5;
-  z-index: 2;
-  box-shadow: 0 10px 15px rgba(0, 0, 0, 0.2);
-}
-
-.contacto{
-    background-color: black;
-    color: white;
-    padding: 120px;
-}
-
-.contacto img {
-  border: 5px solid red;
-  padding: 5px; 
-  background-color: white; 
-  border-radius: 10px; 
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2); 
-}
-
-.contacto button{
-    height: 50px;
-    width: 150px;
-    background-color: #5A0012;
-    color: white;
-}
-
-.contacto button:hover{
-    background-color: #ffc107;
-    color: black;
-}

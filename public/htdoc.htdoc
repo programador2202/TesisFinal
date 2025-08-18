@@ -38,3 +38,259 @@
 │   └── index.php   (archivo de entrada que redirige según ruta)
 │
 └── .htaccess       (para URLs amigables)
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Nosotros – Perfil estilo Facebook</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root{
+      --bg: #f0f2f5;
+      --card: #ffffff;
+      --text: #1c1e21;
+      --muted: #65676b;
+      --primary: #2374e1;
+      --border: #e4e6eb;
+      --radius: 14px;
+    }
+    *{box-sizing: border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg); color: var(--text);
+    }
+    a{color: inherit; text-decoration: none}
+    img{max-width:100%; display:block}
+
+    /* Wrapper */
+    .container{max-width: 1100px; margin: 0 auto; padding: 16px}
+
+    /* Cover */
+    .cover{
+      position: relative; border-radius: var(--radius); overflow:hidden; background:#ccc; aspect-ratio: 3 / 1;
+      box-shadow: 0 10px 25px rgba(0,0,0,.06);
+    }
+    .cover img{width:100%; height:100%; object-fit: cover}
+    .profile-bar{
+      position: relative; margin-top: -64px; /* pull up over cover */
+      padding: 0 16px 12px;
+    }
+    .profile-card{
+      display:flex; align-items:flex-end; gap:16px; background: var(--card); border-radius: var(--radius);
+      padding: 16px; border: 1px solid var(--border);
+    }
+    .avatar{
+      width: 140px; height:140px; border-radius: 50%; border:4px solid var(--card); overflow: hidden; flex: 0 0 auto;
+      margin-top: -72px; background:#fff;
+    }
+    .profile-info{flex:1 1 auto}
+    .profile-info h1{font-size: clamp(20px, 3vw, 28px); margin:0}
+    .profile-info .meta{color: var(--muted); font-size:14px; margin-top:4px}
+    .profile-actions{display:flex; gap:8px; flex-wrap: wrap}
+    .btn{
+      display:inline-flex; align-items:center; gap:8px; border:1px solid var(--border);
+      background:#fff; padding:10px 14px; border-radius:10px; font-weight:600; cursor:pointer;
+    }
+    .btn.primary{background: var(--primary); color:#fff; border-color: var(--primary)}
+
+    /* Tabs */
+    .tabs{
+      position: sticky; top:0; z-index: 5; background: var(--card);
+      border-radius: var(--radius); border:1px solid var(--border); margin-top: 12px;
+      display:flex; align-items:center; gap:12px; padding: 6px;
+    }
+    .tab{padding:10px 14px; border-radius:10px; color: var(--muted); font-weight:600}
+    .tab.active{background: var(--bg); color: var(--text)}
+
+    /* Layout columns */
+    .grid{display:grid; grid-template-columns: 360px 1fr; gap: 16px; margin-top: 16px}
+
+    .card{background: var(--card); border:1px solid var(--border); border-radius: var(--radius); box-shadow: 0 4px 18px rgba(0,0,0,.04)}
+    .card .card-header{padding:14px 16px; border-bottom:1px solid var(--border); font-weight:700}
+    .card .card-body{padding:14px 16px}
+
+    /* Left column */
+    .intro p{color:var(--muted); margin: 6px 0}
+    .about-list{display:grid; gap:10px}
+    .about-item{display:flex; gap:10px; align-items:flex-start; color:#111}
+    .about-item i{color: var(--muted); width: 22px; text-align:center}
+
+    .photo-grid{display:grid; grid-template-columns: repeat(3, 1fr); gap:6px}
+    .photo-grid img{width:100%; height:100px; object-fit:cover; border-radius:10px}
+
+    .friends-grid{display:grid; grid-template-columns: repeat(3, 1fr); gap:10px}
+    .friend{display:flex; flex-direction:column; align-items:center; text-align:center; gap:6px}
+    .friend img{width:100%; aspect-ratio:1/1; object-fit:cover; border-radius:12px}
+    .friend span{font-size:13px}
+
+    /* Right column */
+    .composer{display:flex; gap:10px}
+    .composer .pic{width:44px; height:44px; border-radius:50%; overflow:hidden; flex:0 0 auto}
+    .composer input{flex: 1 1 auto; border:1px solid var(--border); border-radius:999px; padding:10px 14px}
+    .composer input::placeholder{color:var(--muted)}
+
+    .post{display:flex; flex-direction:column; gap:0}
+    .post .head{display:flex; align-items:center; gap:10px; padding:14px 16px; border-bottom:1px solid var(--border)}
+    .post .head .pic{width:40px; height:40px; border-radius:50%; overflow:hidden}
+    .post .head .who{display:flex; flex-direction:column}
+    .post .head .who b{font-size:15px}
+    .post .head .who span{color:var(--muted); font-size:12px}
+    .post .content{padding: 12px 16px}
+    .post .media img{width:100%; height:auto; max-height: 520px; object-fit:cover}
+    .post .actions{display:flex; gap:8px; padding:10px 16px; border-top:1px solid var(--border)}
+    .pill{flex:1 1 auto; display:flex; align-items:center; justify-content:center; gap:8px; padding:10px; border-radius:10px; background:#f7f8fa; border:1px solid var(--border); cursor:pointer}
+
+    /* Responsive */
+    @media (max-width: 1024px){
+      .grid{grid-template-columns: 1fr}
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Portada -->
+    <div class="cover">
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1600&auto=format&fit=crop" alt="Portada gastronomía" />
+    </div>
+
+    <!-- Perfil -->
+    <div class="profile-bar">
+      <div class="profile-card">
+        <div class="avatar">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=600&auto=format&fit=crop" alt="Avatar" />
+        </div>
+        <div class="profile-info">
+          <h1>Ruta del Sabor Chincha</h1>
+          <div class="meta">Sitio web · Gastronomía · 32,5K seguidores</div>
+        </div>
+        <div class="profile-actions">
+          <button class="btn primary"><i class="fa-solid fa-thumbs-up"></i> Seguir</button>
+          <button class="btn"><i class="fa-regular fa-message"></i> Mensaje</button>
+          <button class="btn"><i class="fa-solid fa-ellipsis"></i></button>
+        </div>
+      </div>
+
+      <div class="tabs" role="tablist">
+        <a class="tab active" href="#biografia">Biografía</a>
+        <a class="tab" href="#publicaciones">Publicaciones</a>
+        <a class="tab" href="#fotos">Fotos</a>
+        <a class="tab" href="#videos">Videos</a>
+        <a class="tab" href="#mas">Más</a>
+      </div>
+    </div>
+
+    <!-- Contenido -->
+    <div class="grid">
+      <!-- Columna izquierda -->
+      <aside>
+        <section class="card intro" id="biografia">
+          <div class="card-header">Presentación</div>
+          <div class="card-body">
+            <p>Somos una guía local que conecta a visitantes y residentes con los mejores restaurantes, huariques y bodegas de Chincha.</p>
+            <div class="about-list" style="margin-top:10px">
+              <div class="about-item"><i class="fa-solid fa-location-dot"></i> Chincha Alta, Ica – Perú</div>
+              <div class="about-item"><i class="fa-solid fa-link"></i> <a href="#">rutadelsaborchincha.com</a></div>
+              <div class="about-item"><i class="fa-regular fa-clock"></i> Abierto hoy: 10:00–22:00</div>
+              <div class="about-item"><i class="fa-solid fa-utensils"></i> Comida criolla · Mariscos · Postres</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" id="fotos" style="margin-top:16px">
+          <div class="card-header">Fotos</div>
+          <div class="card-body">
+            <div class="photo-grid">
+              <img src="https://images.unsplash.com/photo-1526318472351-c75fcf070305?q=80&w=600&auto=format&fit=crop" alt="Foto 1"/>
+              <img src="https://images.unsplash.com/photo-1544025162-d76694265947?q=80&w=600&auto=format&fit=crop" alt="Foto 2"/>
+              <img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?q=80&w=600&auto=format&fit=crop" alt="Foto 3"/>
+              <img src="https://images.unsplash.com/photo-1540189549336-e6e99c3679fe?q=80&w=600&auto=format&fit=crop" alt="Foto 4"/>
+              <img src="https://images.unsplash.com/photo-1549029816-0c9f1bfee0b2?q=80&w=600&auto=format&fit=crop" alt="Foto 5"/>
+              <img src="https://images.unsplash.com/photo-1512058564366-18510be2db19?q=80&w=600&auto=format&fit=crop" alt="Foto 6"/>
+            </div>
+          </div>
+        </section>
+
+        <section class="card" style="margin-top:16px">
+          <div class="card-header">Colaboradores</div>
+          <div class="card-body">
+            <div class="friends-grid">
+              <div class="friend">
+                <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e?q=80&w=400&auto=format&fit=crop" alt="Chef"/>
+                <span>Chef Luis</span>
+              </div>
+              <div class="friend">
+                <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&auto=format&fit=crop" alt="Comunity"/>
+                <span>María – CM</span>
+              </div>
+              <div class="friend">
+                <img src="https://images.unsplash.com/photo-1531123897727-8f129e1688ce?q=80&w=400&auto=format&fit=crop" alt="Fotógrafo"/>
+                <span>Pedro – Foto</span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </aside>
+
+      <!-- Columna derecha -->
+      <main>
+        <section class="card" id="publicaciones">
+          <div class="card-body">
+            <div class="composer">
+              <div class="pic"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=200&auto=format&fit=crop" alt="Avatar"/></div>
+              <input type="text" placeholder="¿Qué quieres compartir?" disabled>
+            </div>
+          </div>
+        </section>
+
+        <article class="card post" style="margin-top:16px">
+          <div class="head">
+            <div class="pic"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=200&auto=format&fit=crop" alt="Avatar"></div>
+            <div class="who">
+              <b>Ruta del Sabor Chincha</b>
+              <span>Publicó · Ayer a las 18:30</span>
+            </div>
+          </div>
+          <div class="content">
+            Hoy visitamos un huarique espectacular en Sunampe. ¡Atento a la reseña completa y nuestras fotos! 🍤🔥
+          </div>
+          <div class="media">
+            <img src="../public/img/causa_agresiva (2).jpg" alt="Post media">
+          </div>
+          <div class="actions">
+            <button class="pill"><i class="fa-regular fa-thumbs-up"></i> Me gusta</button>
+            <button class="pill"><i class="fa-regular fa-comment"></i> Comentar</button>
+            <button class="pill"><i class="fa-solid fa-share"></i> Compartir</button>
+          </div>
+        </article>
+
+        <article class="card post" style="margin-top:16px">
+          <div class="head">
+            <div class="pic"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=200&auto=format&fit=crop" alt="Avatar"></div>
+            <div class="who">
+              <b>Ruta del Sabor Chincha</b>
+              <span>Publicó · 3 días</span>
+            </div>
+          </div>
+          <div class="content">
+            ¿Team carapulcra o team sopa seca? 😋 Cuéntanos cómo la prefieres.
+          </div>
+          <div class="actions">
+            <button class="pill"><i class="fa-regular fa-thumbs-up"></i> Me gusta</button>
+            <button class="pill"><i class="fa-regular fa-comment"></i> Comentar</button>
+            <button class="pill"><i class="fa-solid fa-share"></i> Compartir</button>
+          </div>
+        </article>
+      </main>
+    </div>
+  </div>
+</body>
+</html>
+
+
+
