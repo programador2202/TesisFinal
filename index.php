@@ -137,15 +137,23 @@
     </section>
 
 
-      <!-- Mapa Interactivo -->
+   <!-- Mapa Interactivo -->
 <section id="mapa" class="py-5 bg-light">
   <div class="container">
     <h2 class="text-center mb-4"><b>Encuentra los restaurantes en Chincha</b></h2>
+    
+    <!-- Contenedor del mapa -->
     <div id="map" style="height: 400px; border-radius: 12px; overflow: hidden;"></div>
+    
+    <!-- CTA Final -->
+    <div class="text-center mt-5">
+      <h3 class="mb-3 text-dark"><b>¿Tienes un restaurante? ¡Súmate a Ruta del Sabor y recibe visitas!</b></h3>
+      <a href="#contacto" class="btn btn-danger btn-lg px-4 py-2 rounded-pill shadow-sm">
+       <b>🍴 Quiero aparecer en la web</b> 
+      </a>
+    </div>
   </div>
 </section>
-
-
   </main>
 
   <!-- FOOTER -->

@@ -1,0 +1,79 @@
+/* === Estilos Generales === */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fdfdfd;
+  color: #333;
+}
+
+/* === Categorías === */
+.categoria-card {
+  transition: all 0.3s ease-in-out;
+  border-radius: 12px;
+  background: white;
+  cursor: pointer;
+}
+
+.categoria-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+  background: #fffbf2;
+}
+
+.categoria-icono {
+  font-size: 2.5rem;
+  color: #ff5722;
+  margin-bottom: 8px;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.categoria-card:hover .categoria-icono {
+  transform: scale(1.2);
+  color: #e64a19;
+}
+
+.categoria-card div {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* === Platos === */
+.plato-card {
+  border-radius: 15px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.plato-card img {
+  height: 200px;
+  object-fit: cover;
+}
+
+.plato-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+.plato-card .card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #222;
+}
+
+.plato-card .card-text {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+/* === Botones === */
+.btn-outline-primary {
+  border-radius: 20px;
+  font-size: 0.9rem;
+  padding: 5px 12px;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-outline-primary:hover {
+  background-color: #ff5722;
+  border-color: #ff5722;
+  color: white;
+}

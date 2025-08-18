@@ -12,19 +12,19 @@
     <!-- HEADER -->
   <?php include '../views/partials/header.php'; ?>
 
-<main class="bg-light">
+<main class="bg-body-tertiary">
 <section class="profile-cover position-relative text-center ">
   <img src="../public/img/Quique.jpg" 
        class="rounded-circle border-3 white shadow mt-4" 
        alt="Avatar" 
-       width="200" height="220">
+       width="190" height="200">
 </section>
 
     <section class="container text-center mt-5">
       <P>Nuestro CEO</P>
       <h4>Enrique Mario Ronceros Flores </h4>
       <h2 class="fw-bold">Ruta del Sabor Chincha</h2>
-      <p class="text-muted">Descubre lo mejor de la gastronomía chinchana 🍲</p>
+      <p class="fw-bold">Descubre lo mejor de la gastronomía chinchana 🍲</p>
     </section>
 
     <!-- Sección de información -->
@@ -84,7 +84,14 @@
     </section>
     <br>
     <br>
+     <br>
+    <br>
+     <br>
+    <br>
   </main>
+
+    <!-- FOOTER -->
+  <?php include '../views/partials/footer.php'; ?>
 
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
