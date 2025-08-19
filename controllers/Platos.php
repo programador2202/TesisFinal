@@ -1,6 +1,6 @@
 <?php
 
-if ($_SERVER['REQUEST_METHOD']){
+
   require_once "../models/platos.php";
   $platos =new Platos();
 
@@ -22,7 +22,5 @@ if ($_SERVER['REQUEST_METHOD']){
       }
       break;
   }
-
-
-}
+    
 

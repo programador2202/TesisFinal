@@ -188,7 +188,7 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const selectCategoria = document.querySelector('select[name="categoria"]');
-      fetch("http://localhost/RutadelSaborChincha/controllers/Categoria.php?task=getAll")
+      fetch("http://localhost/RutadelSaborChincha123/controllers/Categoria.php?task=getAll")
         .then(response => response.json())
         .then(data => {
           data.forEach(categoria => {
