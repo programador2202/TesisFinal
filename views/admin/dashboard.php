@@ -11,6 +11,9 @@
 <body>
   <!----MENU PRINCIPAL--->
   <header>
+
+  
+
     <nav class="navbar navbar-expand-lg bg-white shadow-sm py-2">
       <div class="container">
         <!-- Logo -->
@@ -30,27 +33,25 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item mx-2">
-              <a class="nav-link" href="/RutaDelSaborChincha123/index.php"><i class="fas fa-home me-1"></i>Inicio</a>
+              <a class="nav-link" href="datos.php"><i class="fas fa-home me-1"></i>Inicio</a>
             </li>
             <li class="nav-item  mx-2">
               <a class="nav-link" href="categorias.php">
                 <i class="fas fa-utensils me-1"></i> Categorías
               </a>
             </li>
-
+          <li class="nav-item mx-2"><a class="nav-link" href="restaurantes.php"><i class="fas fa-wine-bottle me-1"></i> Restaurantes</a></li>
+            <li class="nav-item mx-2"><a class="nav-link" href="platos.php"><i class="fas fa-wine-bottle me-1"></i> Platos</a></li>
              <li class="nav-item mx-2">
               <a class="nav-link" href=""><i class="fas fa-users me-1"></i>Usuarios</a>
             </li>
-            <li class="nav-item mx-2"><a class="nav-link" href="restaurantes.php"><i class="fas fa-wine-bottle me-1"></i> Restaurantes</a></li>
-            <li class="nav-item mx-2"><a class="nav-link" href="#"><i class="fas fa-blog me-1"></i>VER PAGINA WEB</a></li>
-            <li class="nav-item mx-2"><a class="nav-link" href="#"><i class="fab fa-facebook fa-lg"></i></a></li>
-            <li class="nav-item mx-2"><a class="nav-link" href="#"><i class="fab fa-whatsapp fa-lg"></i></a></li>
-            <li class="nav-item mx-2"><a class="nav-link" href="#"><i class="fab fa-tiktok fa-lg"></i></a></li>
           </ul>
         </div>
       </div>
     </nav>
   </header>
+
+
 
   <!-- Bootstrap JS (con Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

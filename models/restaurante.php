@@ -33,11 +33,14 @@ class Restaurante {
   }
 
   //actualizar un restaurante
-  public function update($id, $nom_restaurante, $img, $descripcion, $direccion, $telefono){
-    $stmt = $this->conexion->prepare("UPDATE RESTAURANTES SET nom_restaurante = ?, img = ?, descripcion = ?, direccion = ?, telefono = ? WHERE idrestaurante = ?");
-    $stmt->execute([$nom_restaurante, $img, $descripcion, $direccion, $telefono, $id]);
+public function update($id, $nom_restaurante, $img, $descripcion, $direccion, $telefono, $idcategoria){
+    $stmt = $this->conexion->prepare("UPDATE RESTAURANTES 
+        SET nom_restaurante = ?, img = ?, descripcion = ?, direccion = ?, telefono = ?, idcategoria=? 
+        WHERE idrestaurante = ?");
+    $stmt->execute([$nom_restaurante, $img, $descripcion, $direccion, $telefono, $idcategoria, $id]);
     return $stmt->rowCount() > 0;
-  }
+}
+
 
   //eliminar un restaurante
   public function delete($id){

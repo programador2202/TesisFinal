@@ -71,9 +71,16 @@ INSERT INTO PLATOS (imagen, nom_platos, descripcion, precio, idrestaurante) VALU
 ('img/platos/aji_de_gallina.jpg', 'Ají de Gallina', 'Tradicional plato peruano a base de gallina deshilachada y crema de ají.', 24.50, 3),
 ('img/platos/lomo_saltado.jpg', 'Lomo Saltado', 'Trozos de carne salteados con cebolla, tomate y papas fritas.', 26.00, 3);
 
-SELECT*FROM PLATOS;
-
-
-
-
+SELECT 
+    p.idplatos,
+    p.imagen,
+    p.nom_platos,
+    p.descripcion,
+    p.precio,
+    p.idrestaurante,
+    r.nom_restaurante,
+    r.direccion,
+    r.telefono
+FROM PLATOS p
+JOIN RESTAURANTES r ON p.idrestaurante = r.idrestaurante;
 

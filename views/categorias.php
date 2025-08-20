@@ -1,16 +1,18 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categorías | Ruta del Sabor Chincha</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="../public/css/index.css">
-    <title>Categorias</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../public/css/index.css">
 </head>
 <body>
+
     <!-- HEADER -->
-    <?php include '../views/partials/header.php'; ?>
+    <?php require_once '../views/partials/header.php'; ?>
 
     <!-- CATEGORÍAS -->
     <section class="py-5 bg-black">
@@ -29,39 +31,57 @@
       </div>
     </section>
 
-    <section>
-        <div class="container py-5">
+    <!-- PLATOS DESTACADOS -->
+    <section class="container py-5" id="platosDestacados">
   <h1 class="text-center mb-4">🍽️ Platos Destacados</h1>
-  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
-    
-    <!-- Aquí iría el loop PHP -->
-    <?php
-    // Conexión a la BD
-    $conn = new mysqli("localhost", "root", "", "sistema_ruta_del_sabor");
-    $sql = "SELECT nom_platos, descripcion, precio, imagen FROM platos";
-    $result = $conn->query($sql);
-    
-    while ($row = $result->fetch_assoc()) {
-    ?>
-      <div class="col">
-        <div class="card h-100 shadow-sm plato-card">
-          <img src="<?php echo $row['imagen']; ?>" class="card-img-top" alt="<?php echo $row['nom_platos']; ?>">
-          <div class="card-body">
-            <h5 class="card-title"><?php echo $row['nom_platos']; ?></h5>
-            <p class="card-text"><?php echo $row['descripcion']; ?></p>
-          </div>
-          <div class="card-footer d-flex justify-content-between align-items-center">
-            <span class="fw-bold text-success">S/ <?php echo number_format($row['precio'], 2); ?></span>
-            <button class="btn btn-outline-primary btn-sm">⭐ Calificar</button>
-          </div>
-        </div>
-      </div>
-    <?php } ?>
-    
+  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" id="platosContainer">
+    <!-- Los platos se cargarán dinámicamente aquí -->
   </div>
-</div>
-    </section>
-    
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</section>
+
+
+<script>
+  // Función para cargar los platos desde el controller
+  async function cargarPlatos() {
+    try {
+      const response = await fetch('../controllers/Platos.php?task=getAll');
+      const platos = await response.json();
+
+      const container = document.getElementById('platosContainer');
+      container.innerHTML = ''; // limpiar contenido previo
+
+      platos.forEach(plato => {
+        const col = document.createElement('div');
+        col.className = 'col';
+
+        col.innerHTML = `
+          <div class="card h-100 shadow-sm plato-card">
+            <img src="../public/img/platos/${plato.imagen}" class="card-img-top" alt="${plato.nom_platos}">
+            <div class="card-body">
+              <h5 class="card-title">${plato.nom_platos}</h5>
+              <p class="card-text">${plato.descripcion}</p>
+            </div>
+            <div class="card-footer d-flex justify-content-between align-items-center">
+              <span class="fw-bold text-success">S/ ${parseFloat(plato.precio).toFixed(2)}</span>
+              <button class="btn btn-outline-primary btn-sm">⭐ Calificar</button>
+            </div>
+          </div>
+        `;
+
+        container.appendChild(col);
+      });
+
+    } catch (error) {
+      console.error('Error al cargar los platos:', error);
+    }
+  }
+
+  // Cargar los platos al cargar la página
+  window.addEventListener('DOMContentLoaded', cargarPlatos);
+</script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

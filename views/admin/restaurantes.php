@@ -124,136 +124,213 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-  <script>
-    // Abrir modal nuevo restaurante
-    document.getElementById("btnRestaurante").addEventListener("click", () => {
-      document.getElementById("formRestaurante").reset();
-      document.getElementById("idRestaurante").value = "";
-      //selector de categoría
-      document.getElementById("idcategoria").value = "";
-      document.getElementById("previewImg").classList.add("d-none");
-      document.getElementById("modaltitle").innerText = "Nuevo Restaurante";
-    const nom_restaurante = document.querySelector("#nom_restaurante").value;
-    const descripcion = document.querySelector("#descripcion").value;
-    const direccion = document.querySelector("#direccion").value;
-    const telefono = document.querySelector("#telefono").value;
-    const idcategoria = document.querySelector("#idcategoria").value;
-    const img = document.querySelector("#img").files[0];
-      new bootstrap.Modal(document.getElementById("modalRestaurante")).show();
-    });
-
-    //mostrar datos en la tabla
-    async function cargarRestaurantes() {
-      const response = await fetch("http://localhost/RutadelSaborChincha123/controllers/Restaurantes.php?task=getAll");
-        const data = await response.json();
-        const tbody = document.querySelector("#tabla-Restaurantes tbody");
-        tbody.innerHTML = "";
-        data.forEach(restaurante => {
-            const tr = document.createElement("tr");
-            tr.innerHTML = `
-                <td>${restaurante.idrestaurante}</td>
-                <td>${restaurante.categoria}</td>
-                <td>${restaurante.nom_restaurante}</td>
-                <td><img src="${restaurante.img}" alt="${restaurante.nom_restaurante}" width="100" class="img-fluid rounded"></td>
-                <td>${restaurante.descripcion}</td>
-                <td>${restaurante.direccion}</td>
-                <td>${restaurante.telefono}</td>
-                <td>
-                    <button class="btn btn-sm btn-warning btnEditar" data-id="${restaurante.idrestaurante}"><i class="fa fa-edit"></i>Editar</button>
-                    <button class="btn btn-sm btn-danger btnEliminar" data-id="${restaurante.idrestaurante}"><i class="fa fa-trash"></i>Eliminar</button>
-                </td>
-            `;
-            tbody.appendChild(tr);
-        });
-
-    }
-    cargarRestaurantes();
-
-    //cargar categorías en el select
-    async function cargarCategorias() {
-        const response = await fetch("http://localhost/RutadelSaborChincha123/controllers/Categoria.php?task=getAll");
-        const data = await response.json();
-        const selectCategoria = document.getElementById("idcategoria");
-        data.forEach(categoria => {
-            const option = document.createElement("option");
-            option.value = categoria.idcategoria;
-            option.textContent = categoria.nombre;
-            selectCategoria.appendChild(option);
-        });
-    }
-    cargarCategorias();
-
-// Función para registrar un nuevo restaurante
-
-async function crearRestaurante() {
+<script>
+  // Abrir modal para nuevo restaurante
+  document.getElementById("btnRestaurante").addEventListener("click", () => {
     const form = document.getElementById("formRestaurante");
+    form.reset();
+    document.getElementById("idRestaurante").value = "";
+    document.getElementById("idcategoria").value = "";
+    document.getElementById("previewImg").classList.add("d-none");
+    document.getElementById("modaltitle").innerText = "Nuevo Restaurante";
 
-    // Tomar valores de los inputs
-    const nom_restaurante = form.querySelector("[name='nom_restaurante']").value.trim();
-    const descripcion = form.querySelector("[name='descripcion']").value.trim();
-    const direccion = form.querySelector("[name='direccion']").value.trim();
-    const telefono = form.querySelector("[name='telefono']").value.trim();
-    const idcategoria = form.querySelector("[name='idcategoria']").value;
-    const img = form.querySelector("[name='img']").files[0]; 
+    new bootstrap.Modal(document.getElementById("modalRestaurante")).show();
+  });
 
-    // Validación simple
-    if (!nom_restaurante || !descripcion || !direccion || !telefono || !idcategoria || !img) {
-        Swal.fire({
-            icon: "warning",
-            title: "Campos incompletos",
-            text: "Todos los campos son obligatorios."
-        });
-        return;
-    }
-
-    // Armar FormData con todos los campos
-    const formData = new FormData();
-    formData.append("task", "create");
-    formData.append("nom_restaurante", nom_restaurante);
-    formData.append("descripcion", descripcion);
-    formData.append("direccion", direccion);
-    formData.append("telefono", telefono);
-    formData.append("idcategoria", idcategoria);
-    formData.append("img", img);
-
+  // Cargar restaurantes
+  async function cargarRestaurantes() {
     try {
-        const response = await fetch("http://localhost/RutadelSaborChincha123/controllers/Restaurantes.php", {
-            method: "POST",
-            body: formData
-        });
+      const response = await fetch("http://localhost/RutadelSaborChincha123/controllers/Restaurantes.php?task=getAll");
+      const data = await response.json();
 
-        const result = await response.json();
+      const tbody = document.querySelector("#tabla-Restaurantes tbody");
+      tbody.innerHTML = "";
 
-        if (result.success) {
-            Swal.fire({
-                icon: "success",
-                title: "Éxito",
-                text: result.success
-            }).then(() => {
-                cargarRestaurantes(); 
-                form.reset();         
-            });
-        } else {
-            Swal.fire({
-                icon: "error",
-                title: "Error",
-                text: result.error || "Error al crear el restaurante."
-            });
-        }
+      data.forEach(restaurante => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${restaurante.idrestaurante}</td>
+          <td>${restaurante.categoria}</td>
+          <td>${restaurante.nom_restaurante}</td>
+         <td>${restaurante.img ? `<img src="http://localhost/RutadelSaborChincha123/public/img/restaurantes/${restaurante.img}" 
+              alt="${restaurante.img}" class="img-fluid rounded">`: ''}
+</td>
+          <td>${restaurante.descripcion}</td>
+          <td>${restaurante.direccion}</td>
+          <td>${restaurante.telefono}</td>
+          <td>
+            <button class="btn btn-sm btn-warning btnEditar" data-id="${restaurante.idrestaurante}">
+              <i class="fa fa-edit"></i> Editar
+            </button>
+            <button class="btn btn-sm btn-danger btnEliminar" data-id="${restaurante.idrestaurante}">
+              <i class="fa fa-trash"></i> Eliminar
+            </button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      // Enlazar botones de editar y eliminar
+      document.querySelectorAll(".btnEditar").forEach(btn => {
+        btn.addEventListener("click", () => editarRestaurante(btn.dataset.id));
+      });
+      document.querySelectorAll(".btnEliminar").forEach(btn => {
+        btn.addEventListener("click", () => eliminarRestaurante(btn.dataset.id));
+      });
     } catch (error) {
-        console.error("Error en la solicitud:", error);
-        Swal.fire({
-            icon: "error",
-            title: "Error de conexión",
-            text: "Hubo un problema al conectar con el servidor."
-        });
+      console.error("Error cargando restaurantes:", error);
     }
-}
+  }
+  cargarRestaurantes();
+
+  // Cargar categorías
+  async function cargarCategorias() {
+    try {
+      const response = await fetch("http://localhost/RutadelSaborChincha123/controllers/Categoria.php?task=getAll");
+      const data = await response.json();
+
+      const selectCategoria = document.getElementById("idcategoria");
+      selectCategoria.innerHTML = `<option value="" selected disabled>Seleccione una categoría</option>`;
+
+      data.forEach(categoria => {
+        const option = document.createElement("option");
+        option.value = categoria.idcategoria;
+        option.textContent = categoria.nombre;
+        selectCategoria.appendChild(option);
+      });
+    } catch (error) {
+      console.error("Error cargando categorías:", error);
+    }
+  }
+  cargarCategorias();
+
+  // Previsualizar imagen
+  document.getElementById("img").addEventListener("change", (e) => {
+    const file = e.target.files[0];
+    const preview = document.getElementById("previewImg");
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        preview.src = event.target.result;
+        preview.classList.remove("d-none");
+      };
+      reader.readAsDataURL(file);
+    } else {
+      preview.classList.add("d-none");
+    }
+  });
+
+  // Crear 
+  async function crearRestaurante(e) {
+    e.preventDefault();
+    const form = document.getElementById("formRestaurante");
+    const idRestaurante = document.getElementById("idRestaurante").value;
+
+    const formData = new FormData(form);
+    formData.append("task", idRestaurante ? "update" : "create");
+
+    // Para update,
+    try {
+      const response = await fetch("http://localhost/RutadelSaborChincha123/controllers/Restaurantes.php", {
+        method: "POST", 
+        body: formData
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        Swal.fire({
+          icon: "success",
+          title: "Éxito",
+          text: result.success
+        }).then(() => {
+          cargarRestaurantes();
+          form.reset();
+          document.getElementById("previewImg").classList.add("d-none");
+          bootstrap.Modal.getInstance(document.getElementById("modalRestaurante")).hide();
+        });
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Error",
+          text: result.error || "Error en la operación."
+        });
+      }
+    } catch (error) {
+      console.error("Error en la solicitud:", error);
+      Swal.fire({
+        icon: "error",
+        title: "Error de conexión",
+        text: "Hubo un problema al conectar con el servidor."
+      });
+    }
+  }
+  document.getElementById("formRestaurante").addEventListener("submit", crearRestaurante);
+
+  // Editar restaurante
+  async function editarRestaurante(idrestaurante) {
+    try {
+      const response = await fetch(`http://localhost/RutadelSaborChincha123/controllers/Restaurantes.php?task=getById&idrestaurante=${idrestaurante}`);
+      const data = await response.json();
+
+      const form = document.getElementById("formRestaurante");
+      document.getElementById("idRestaurante").value = data.idrestaurante;
+      form.nom_restaurante.value = data.nom_restaurante;
+      form.descripcion.value = data.descripcion;
+      form.direccion.value = data.direccion;
+      form.telefono.value = data.telefono;
+      form.idcategoria.value = data.idcategoria;
+
+      if (data.img) {
+        const preview = document.getElementById("previewImg");
+        preview.src = `http://localhost/RutadelSaborChincha123/public/img/restaurantes/${data.img}`;
+        preview.classList.remove("d-none");
+      }
+
+      document.getElementById("modaltitle").innerText = "Editar Restaurante";
+      new bootstrap.Modal(document.getElementById("modalRestaurante")).show();
+
+    } catch (error) {
+      console.error("Error obteniendo restaurante:", error);
+    }
+  }
+
+  // Eliminar restaurante
+  async function eliminarRestaurante(id) {
+    Swal.fire({
+      title: "¿Eliminar restaurante?",
+      text: "Esta acción no se puede deshacer.",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#d33",
+      cancelButtonColor: "#3085d6",
+      confirmButtonText: "Sí, eliminar",
+      cancelButtonText: "Cancelar"
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          const response = await fetch("http://localhost/RutadelSaborChincha123/controllers/Restaurantes.php", {
+            method: "DELETE",
+            body: new URLSearchParams({ task: "delete", idrestaurante: id })
+          });
+
+          const result = await response.json();
+
+          if (result.success) {
+            Swal.fire("Eliminado", result.success, "success");
+            cargarRestaurantes();
+          } else {
+            Swal.fire("Error", result.error || "No se pudo eliminar", "error");
+          }
+        } catch (error) {
+          console.error("Error eliminando restaurante:", error);
+          Swal.fire("Error", "Problema al conectar con el servidor", "error");
+        }
+      }
+    });
+  }
+</script>
 
 
-
-
-    
-  </script>
 </body>
 </html>

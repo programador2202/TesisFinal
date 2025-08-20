@@ -1,76 +1,113 @@
 <?php
+require_once "../models/restaurante.php";
+$restaurante = new Restaurante();
 
-if ($_SERVER['REQUEST_METHOD']){
-  require_once "../models/restaurante.php";
-  $restaurante =new Restaurante();
+// Obtener el método real (POST se usa también para update)
+$method = $_SERVER['REQUEST_METHOD'];
 
-  switch($_SERVER["REQUEST_METHOD"]){
+header("Content-type: application/json; charset=utf-8");
+
+switch ($method) {
+
+   
     case "GET":
-      header("Content-type: application/json; charset=utf-8");
-      if(isset($_GET["task"])){
-        if($_GET["task"]=='getAll'){
-            echo json_encode($restaurante->getAll());
-        } else if ($_GET["task"]=='getById' && isset($_GET['idrestaurante'])){
-          echo json_encode( $restaurante ->getById( $_GET['idrestaurante']));
+        if (isset($_GET["task"])) {
+            if ($_GET["task"] == 'getAll') {
+                echo json_encode($restaurante->getAll());
+            } elseif ($_GET["task"] == 'getById' && isset($_GET['idrestaurante'])) {
+                echo json_encode($restaurante->getById($_GET['idrestaurante']));
+            } else {
+                echo json_encode(["error" => "Parametro 'task' desconocido o faltan datos."]);
+            }
         } else {
-          echo json_encode( ["error" =>"Parametro 'task' desconocido o faltan datos."]);
+            echo json_encode(["error" => "Falta el parametro 'task'."]);
         }
-      } else {
-        echo json_encode(["error"=> "falta el parametro 'task'."]);
-      }
-      break;
-  
-    
-  // manejar la inserción de un nuevo restaurante incluyendo imagen
-case "POST":
-    header("Content-type: application/json; charset=utf-8");
+        break;
 
-    if (isset($_POST["task"]) && $_POST["task"] == "create") {
-        // Campos obligatorios
+
+    case "POST":
+        $task = $_POST["task"] ?? '';
+
+        $idrestaurante   = $_POST["idRestaurante"] ?? '';
         $nom_restaurante = $_POST["nom_restaurante"] ?? '';
-        $descripcion = $_POST["descripcion"] ?? '';
-        $direccion = $_POST["direccion"] ?? '';
-        $telefono = $_POST["telefono"] ?? '';
-        $idcategoria = $_POST["idcategoria"] ?? '';
+        $descripcion     = $_POST["descripcion"] ?? '';
+        $direccion       = $_POST["direccion"] ?? '';
+        $telefono        = $_POST["telefono"] ?? '';
+        $idcategoria     = $_POST["idcategoria"] ?? '';
+        $imgPath         = '';
 
+        // Validar campos obligatorios
         if (!$nom_restaurante || !$descripcion || !$direccion || !$telefono || !$idcategoria) {
             echo json_encode(["error" => "Todos los campos son obligatorios."]);
-            break;
+            exit;
         }
 
-    // Manejo de la imagen
-if (isset($_FILES['img']) && $_FILES['img']['error'] === UPLOAD_ERR_OK) {
-    $imgTmpPath = $_FILES['img']['tmp_name'];
-    $imgName = time() . "_" . basename($_FILES['img']['name']); // evitamos nombres repetidos
-    $uploadDir = "../public/img/restaurantes/";
+        // Manejo de imagen si se sube
+        if (isset($_FILES['img']) && $_FILES['img']['error'] === UPLOAD_ERR_OK) {
+            $imgTmpPath = $_FILES['img']['tmp_name'];
+            $imgName = time() . "_" . basename($_FILES['img']['name']); 
+            $uploadDir = "../public/img/restaurantes/";
+            if (!is_dir($uploadDir)) mkdir($uploadDir, 0777, true);
 
-    // Crear carpeta si no existe
-    if (!is_dir($uploadDir)) {
-        if (!mkdir($uploadDir, 0777, true)) {
-            echo json_encode(["error" => "No se pudo crear la carpeta de imágenes."]);
-            break;
+            $imgPathFull = $uploadDir . $imgName;
+            if (move_uploaded_file($imgTmpPath, $imgPathFull)) {
+                $imgPath = "public/img/restaurantes/" . $imgName;
+            }
         }
-    }
 
-    $imgPath = $uploadDir . $imgName;
+        // Crear restaurante
+        if ($task == "create") {
+            if (!$imgPath) {
+                echo json_encode(["error" => "Debe proporcionar una imagen para crear el restaurante."]);
+                exit;
+            }
 
-    if (move_uploaded_file($imgTmpPath, $imgPath)) {
-        // Guardar la ruta relativa (para el front)
-        $relativeImgPath = "public/img/restaurantes/" . $imgName;
+            if ($restaurante->create($nom_restaurante, $imgPath, $descripcion, $direccion, $telefono, $idcategoria)) {
+                echo json_encode(["success" => "Restaurante creado exitosamente."]);
+            } else {
+                echo json_encode(["error" => "Error al crear el restaurante."]);
+            }
+        }
 
-        if ($restaurante->create($nom_restaurante, $relativeImgPath, $descripcion, $direccion, $telefono, $idcategoria)) {
-            echo json_encode(["success" => "Restaurante creado exitosamente."]);
+        // Actualizar restaurante
+        elseif ($task == "update") {
+            if (!$idrestaurante) {
+                echo json_encode(["error" => "ID de restaurante requerido para actualizar."]);
+                exit;
+            }
+
+            // Si no se subió imagen, mantener la anterior
+            if (!$imgPath) {
+                $restData = $restaurante->getById($idrestaurante);
+                $imgPath = $restData['img'] ?? '';
+            }
+
+            if ($restaurante->update($idrestaurante, $nom_restaurante, $imgPath, $descripcion, $direccion, $telefono, $idcategoria)) {
+                echo json_encode(["success" => "Restaurante actualizado exitosamente."]);
+            } else {
+                echo json_encode(["error" => "Error al actualizar el restaurante."]);
+            }
         } else {
-            echo json_encode(["error" => "Error al crear el restaurante en la base de datos."]);
+            echo json_encode(["error" => "Tarea POST desconocida"]);
         }
-    } else {
-        echo json_encode(["error" => "Error al subir la imagen."]);
-    }
-} else {
-    echo json_encode(["error" => "Imagen no proporcionada o error en la subida."]);
-}
+        break;
 
-    break;
-}
-  }
+    // delete
+    case "DELETE":
+        parse_str(file_get_contents("php://input"), $_DELETE);
+        if (isset($_DELETE["task"]) && $_DELETE["task"] == "delete" && isset($_DELETE["idrestaurante"])) {
+            $idrestaurante = $_DELETE["idrestaurante"];
+            if ($restaurante->delete($idrestaurante)) {
+                echo json_encode(["success" => "Restaurante eliminado correctamente."]);
+            } else {
+                echo json_encode(["error" => "Error al eliminar el restaurante."]);
+            }
+        } else {
+            echo json_encode(["error" => "Faltan parámetros para eliminar."]);
+        }
+        break;
+
+    default:
+        echo json_encode(["error" => "Método no permitido"]);
+        break;
 }
