@@ -9,6 +9,26 @@
 
 </head>
 <body>
+    <style>
+    /* Evita desbordes de celdas y recorta texto largo */
+    #tabla-Restaurantes th, #tabla-Restaurantes td {
+      max-width: 180px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      vertical-align: middle;
+    }
+    #tabla-Restaurantes td img {
+      max-width: 100px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+    }
+    /* Permite scroll horizontal si la tabla es muy ancha */
+    .table-responsive {
+      overflow-x: auto;
+    }
+    </style>
     <?php include 'dashboard.php'; ?>
     <div class="container my-4 mb-5 mt-5">
         <div class="d-flex justify-content-between align-items-center mb-3">

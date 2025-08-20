@@ -13,9 +13,9 @@
     <?php include '../views/partials/header.php'; ?>
 
     <!-- CATEGORÍAS -->
-    <section class="py-5 bg-light">
+    <section class="py-5 bg-black">
       <div class="container">
-        <h2 class="text-center mb-4"><b>Explora por Categorías</b></h2>
+        <h2 class="text-center mb-4 text-white"><b>Explora por Categorías</b></h2>
         <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-4 justify-content-center">
           <div class="col text-center"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-utensils categoria-icono"></i><div>Comida Oriental</div></div></div>
           <div class="col text-center"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-drumstick-bite categoria-icono"></i><div>Pollerías</div></div></div>

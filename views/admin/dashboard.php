@@ -6,7 +6,6 @@
   <title>Ruta del Sabor Chincha</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-  <link rel="stylesheet" href="public/css/index.css">
 </head>
 
 <body>
@@ -31,7 +30,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item mx-2">
-              <a class="nav-link" href=""><i class="fas fa-home me-1"></i>Inicio</a>
+              <a class="nav-link" href="/RutaDelSaborChincha123/index.php"><i class="fas fa-home me-1"></i>Inicio</a>
             </li>
             <li class="nav-item  mx-2">
               <a class="nav-link" href="categorias.php">
@@ -40,9 +39,9 @@
             </li>
 
              <li class="nav-item mx-2">
-              <a class="nav-link" href="/RutaDelSaborChincha123/views/nosotros.php"><i class="fas fa-users me-1"></i>Usuarios</a>
+              <a class="nav-link" href=""><i class="fas fa-users me-1"></i>Usuarios</a>
             </li>
-            <li class="nav-item mx-2"><a class="nav-link" href="#"><i class="fas fa-wine-bottle me-1"></i> Restaurantes</a></li>
+            <li class="nav-item mx-2"><a class="nav-link" href="restaurantes.php"><i class="fas fa-wine-bottle me-1"></i> Restaurantes</a></li>
             <li class="nav-item mx-2"><a class="nav-link" href="#"><i class="fas fa-blog me-1"></i>VER PAGINA WEB</a></li>
             <li class="nav-item mx-2"><a class="nav-link" href="#"><i class="fab fa-facebook fa-lg"></i></a></li>
             <li class="nav-item mx-2"><a class="nav-link" href="#"><i class="fab fa-whatsapp fa-lg"></i></a></li>
