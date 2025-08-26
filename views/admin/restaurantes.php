@@ -48,10 +48,10 @@
                 <th>ID</th>
                 <th>Categoría</th>
                 <th>Nombre</th>
-                <th>Imagen</th>
                 <th>Descripción</th>
                 <th>Dirección</th>
                 <th>Teléfono</th>
+                <th>Imagenes</th>
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -151,13 +151,17 @@
         tr.innerHTML = `
           <td>${restaurante.idrestaurante}</td>
           <td>${restaurante.categoria}</td>
-          <td>${restaurante.nom_restaurante}</td>
-         <td>${restaurante.img ? `<img src="http://localhost/RutadelSaborChincha123/public/img/restaurantes/${restaurante.img}" 
-              alt="${restaurante.img}" class="img-fluid rounded">`: ''}
-</td>
+          <td>${restaurante.nom_restaurante}</td>      
           <td>${restaurante.descripcion}</td>
           <td>${restaurante.direccion}</td>
           <td>${restaurante.telefono}</td>
+          <td>
+            ${restaurante.img 
+              ? `<img src="http://localhost/RutadelSaborChincha123/public/img/restaurantes/${restaurante.img}" 
+                     alt="${restaurante.nom_restaurante}" 
+                     class="img-fluid rounded" style="max-width:80px; height:auto;">` 
+              : ''}
+          </td>
           <td>
             <button class="btn btn-sm btn-warning btnEditar" data-id="${restaurante.idrestaurante}">
               <i class="fa fa-edit"></i> Editar
@@ -204,7 +208,7 @@
   }
   cargarCategorias();
 
-  // Previsualizar imagen
+  // Previsualizar imagen antes de subir
   document.getElementById("img").addEventListener("change", (e) => {
     const file = e.target.files[0];
     const preview = document.getElementById("previewImg");
@@ -220,7 +224,7 @@
     }
   });
 
-  // Crear 
+  // Crear o actualizar restaurante
   async function crearRestaurante(e) {
     e.preventDefault();
     const form = document.getElementById("formRestaurante");
@@ -229,7 +233,6 @@
     const formData = new FormData(form);
     formData.append("task", idRestaurante ? "update" : "create");
 
-    // Para update,
     try {
       const response = await fetch("http://localhost/RutadelSaborChincha123/controllers/Restaurantes.php", {
         method: "POST", 
@@ -285,6 +288,8 @@
         const preview = document.getElementById("previewImg");
         preview.src = `http://localhost/RutadelSaborChincha123/public/img/restaurantes/${data.img}`;
         preview.classList.remove("d-none");
+      } else {
+        document.getElementById("previewImg").classList.add("d-none");
       }
 
       document.getElementById("modaltitle").innerText = "Editar Restaurante";
@@ -330,6 +335,7 @@
     });
   }
 </script>
+
 
 
 </body>

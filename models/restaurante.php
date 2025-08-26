@@ -61,6 +61,24 @@ public function update($id, $nom_restaurante, $img, $descripcion, $direccion, $t
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
+  //obtener categoria de Comida Oriental
+   public function ListaOriental() {
+    $stmt = $this->conexion->prepare("
+        SELECT 
+            r.idrestaurante,
+            r.nom_restaurante,
+            r.img,
+            r.descripcion,
+            r.direccion,
+            r.telefono,
+            c.nombre AS categoria
+        FROM RESTAURANTES r
+        INNER JOIN CATEGORIA c ON r.idcategoria = c.idcategoria
+        WHERE r.idcategoria = 1
+    ");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
 }
 ?>

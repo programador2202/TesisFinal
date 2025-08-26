@@ -2,20 +2,21 @@
 require_once "../models/restaurante.php";
 $restaurante = new Restaurante();
 
-// Obtener el método real (POST se usa también para update)
+// Obtener el método real
 $method = $_SERVER['REQUEST_METHOD'];
 
 header("Content-type: application/json; charset=utf-8");
 
 switch ($method) {
 
-   
     case "GET":
         if (isset($_GET["task"])) {
             if ($_GET["task"] == 'getAll') {
                 echo json_encode($restaurante->getAll());
             } elseif ($_GET["task"] == 'getById' && isset($_GET['idrestaurante'])) {
                 echo json_encode($restaurante->getById($_GET['idrestaurante']));
+            } elseif ($_GET["task"] == 'ListaOriental') {
+                echo json_encode($restaurante->ListaOriental());
             } else {
                 echo json_encode(["error" => "Parametro 'task' desconocido o faltan datos."]);
             }
@@ -23,7 +24,6 @@ switch ($method) {
             echo json_encode(["error" => "Falta el parametro 'task'."]);
         }
         break;
-
 
     case "POST":
         $task = $_POST["task"] ?? '';
@@ -43,15 +43,12 @@ switch ($method) {
         }
 
         // Manejo de imagen si se sube
-        if (isset($_FILES['img']) && $_FILES['img']['error'] === UPLOAD_ERR_OK) {
-            $imgTmpPath = $_FILES['img']['tmp_name'];
-            $imgName = time() . "_" . basename($_FILES['img']['name']); 
-            $uploadDir = "../public/img/restaurantes/";
-            if (!is_dir($uploadDir)) mkdir($uploadDir, 0777, true);
+        if (isset($_FILES['img']) && $_FILES['img']['error'] == 0) {
+            $nombreArchivo = time() . "_" . basename($_FILES['img']['name']); 
+            $rutaDestino = "../public/img/restaurantes/" . $nombreArchivo;
 
-            $imgPathFull = $uploadDir . $imgName;
-            if (move_uploaded_file($imgTmpPath, $imgPathFull)) {
-                $imgPath = "public/img/restaurantes/" . $imgName;
+            if (move_uploaded_file($_FILES['img']['tmp_name'], $rutaDestino)) {
+                $imgPath = $nombreArchivo; // CORRECCIÓN: guardamos el nombre real en $imgPath
             }
         }
 
@@ -92,7 +89,6 @@ switch ($method) {
         }
         break;
 
-    // delete
     case "DELETE":
         parse_str(file_get_contents("php://input"), $_DELETE);
         if (isset($_DELETE["task"]) && $_DELETE["task"] == "delete" && isset($_DELETE["idrestaurante"])) {

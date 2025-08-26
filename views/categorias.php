@@ -39,6 +39,9 @@
   </div>
 </section>
 
+<!---FOOTER-->
+<?php  require_once '../views/partials/footer.php' ?>
+
 
 <script>
   // Función para cargar los platos desde el controller

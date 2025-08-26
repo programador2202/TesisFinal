@@ -1,3 +1,4 @@
+-- Active: 1726418525214@@127.0.0.1@3306@sistema_ruta_del_sabor
 CREATE DATABASE SISTEMA_RUTA_DEL_SABOR;
 
 USE SISTEMA_RUTA_DEL_SABOR;
@@ -48,6 +49,18 @@ SELECT r.idrestaurante, r.nom_restaurante, c.nombre AS categoria, r.direccion, r
 FROM RESTAURANTES r
 INNER JOIN CATEGORIA c ON r.idcategoria = c.idcategoria;
 
+SELECT 
+    r.idrestaurante,
+    r.nom_restaurante,
+    r.img,
+    r.descripcion,
+    r.direccion,
+    r.telefono,
+    c.nombre AS categoria
+FROM RESTAURANTES r
+INNER JOIN CATEGORIA c ON r.idcategoria = c.idcategoria
+WHERE r.idcategoria = 2;
+
 
 
 
@@ -71,6 +84,7 @@ INSERT INTO PLATOS (imagen, nom_platos, descripcion, precio, idrestaurante) VALU
 ('img/platos/aji_de_gallina.jpg', 'Ají de Gallina', 'Tradicional plato peruano a base de gallina deshilachada y crema de ají.', 24.50, 3),
 ('img/platos/lomo_saltado.jpg', 'Lomo Saltado', 'Trozos de carne salteados con cebolla, tomate y papas fritas.', 26.00, 3);
 
+
 SELECT 
     p.idplatos,
     p.imagen,
@@ -83,4 +97,5 @@ SELECT
     r.telefono
 FROM PLATOS p
 JOIN RESTAURANTES r ON p.idrestaurante = r.idrestaurante;
+
 

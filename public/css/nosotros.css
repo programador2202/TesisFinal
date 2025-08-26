@@ -1,20 +1,38 @@
 body {
-  font-family: sans-serif;
-  background-color: #ffffff;
-  color: #0c0c0c;
+  font-family: 'Poppins', sans-serif;
+  background-color: #fafafa;
+  color: #333;
 }
 
-.h1{
-  font-size: 2.5rem;
-  font-weight: bold;
-  background-color: brown;
+/* Foto del CEO */
+.profile-cover {
+  background: linear-gradient(135deg, #ffcc70, #ff8c00);
+  padding: 3rem 0;
 }
 
-h2, h5 {
-  font-weight: 700;
+.profile-cover img {
+  border: 5px solid #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
 }
 
-p {
-  margin-bottom: 0.8rem;
+.profile-cover img:hover {
+  transform: scale(1.05);
 }
 
+/* Cards */
+.card {
+  border-radius: 15px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* Objetivos */
+.card ul li {
+  margin-bottom: 10px;
+  font-weight: 500;
+}

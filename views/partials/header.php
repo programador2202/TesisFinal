@@ -52,17 +52,16 @@
     </nav>
   </header>
 
-  <!-- Bootstrap JS (con Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Script para cerrar menú automáticamente en móvil -->
+  
   <script>
     const navLinks = document.querySelectorAll('.nav-link');
     const navCollapse = document.getElementById('navbarSupportedContent');
 
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
-        if (window.innerWidth < 992) { // solo en móviles
+        if (window.innerWidth < 992) {
           const collapse = new bootstrap.Collapse(navCollapse, { toggle: false });
           collapse.hide();
         }

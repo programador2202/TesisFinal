@@ -1,85 +1,137 @@
-  body {
-  font-family: sans-serif;
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
+
+/* ===== BASE ===== */
+body {
+  font-family: sans-serif;
+  background-color: #fafafa;
+  color: #000000;
+  line-height: 1.6;
+}
+
+/* ===== HERO ===== */
 .hero {
-      background: linear-gradient(rgb(0, 0, 0), rgb(0, 0, 0));
-      background-size: cover;
-      color: white;
-      padding: 100px 20px;
-      text-align: center;
-    }
-    .hero h1 {
-      font-size: 2.5rem;
-      font-weight: bold;
-    }
-    .categoria-icono {
-      font-size: 2.5rem;
-      color: #dc3545;
-    }
-    .categoria-card:hover {
-      transform: scale(1.03);
-      transition: 0.3s;
-    }
-  
-  /* SCROLL HORIZONTAL TARJETAS */
-    .scroll-wrapper {
-      position: relative;
-    }
+  background: linear-gradient(to right, #f4ae2de0, #ff8c00d7);
+  background-size: cover;
+  color: #000000;
+  padding: 4rem 1rem;
+  border-radius: 0 0 2rem 2rem;
+  text-align: center;
+}
+.hero h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  animation: fadeInDown 1s ease;
+}
+.hero button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
 
-    .scroll-container {
-      display: flex;
-      gap: 1rem;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      padding: 1rem 0;
-    }
+/* ===== CATEGORÍAS ===== */
+.categoria-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  cursor: pointer;
+  border-radius: 1rem;
+}
+.categoria-card:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+  background: #fff3e6;
+}
+.categoria-icono {
+  font-size: 2.2rem;
+  margin-bottom: 8px;
+  color: #dc3545;
+}
 
-    .scroll-container::-webkit-scrollbar {
-      height: 0px;
-    }
-    .scroll-container::-webkit-scrollbar-thumb {
-      background: #040404;
-      border-radius: 4px;
-    }
+/* ===== SCROLL HORIZONTAL TARJETAS ===== */
+.scroll-wrapper {
+  position: relative;
+}
 
-    .scroll-card {
-      flex: 0 0 auto;
-      width: 20rem;
-      scroll-snap-align: start;
-      overflow: hidden;
-    }
+.scroll-container {
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: 1rem 0;
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+}
+.scroll-container::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
 
-    .scroll-card img {
-      height: 200px;
-      object-fit: cover;
-    }
+.scroll-card {
+  flex: 0 0 clamp(220px, 70vw, 300px); /* responsive: min 220px, máx 300px */
+  border: none;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  transition: transform 0.3s;
+  scroll-snap-align: start;
+}
+.scroll-card:hover {
+  transform: translateY(-5px);
+}
+.scroll-card img {
+  height: 180px;
+  object-fit: cover;
+  width: 100%;
+}
 
-    /* BOTONES */
-    .scroll-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(255,255,255,0.9);
-      border: none;
-      font-size: 2rem;
-      cursor: pointer;
-      padding: 0.3rem 0.6rem;
-      border-radius: 50%;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-      z-index: 10;
-    }
-    .scroll-btn.left { left: -55px; }
-    .scroll-btn.right { right: -55px; }
+/* ===== BOTONES SCROLL ===== */
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #e19600;
+  border: none;
+  font-size: 2rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 0.3rem 0.6rem;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+  z-index: 10;
+}
+.scroll-btn.left { left: -25px; }
+.scroll-btn.right { right: -25px; }
+.scroll-btn:hover {
+  background: #ffad09;
+}
+.scroll-btn:focus {
+  outline: 2px solid #ffad09;
+  outline-offset: 3px;
+}
 
-    .platos-container {
+/* ===== PLATOS ===== */
+.platos-container {
   display: flex;
   gap: 1rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   padding: 1rem 0;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE y Edge */
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.platos-container::-webkit-scrollbar {
+  display: none;
 }
 
+/* ===== ANIMACIONES ===== */
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
