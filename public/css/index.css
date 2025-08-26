@@ -4,7 +4,7 @@
   box-sizing: border-box;
 }
 
-/* ===== BASE ===== */
+
 body {
   font-family: sans-serif;
   background-color: #fafafa;
@@ -12,7 +12,7 @@ body {
   line-height: 1.6;
 }
 
-/* ===== HERO ===== */
+
 .hero {
   background: linear-gradient(to right, #f4ae2de0, #ff8c00d7);
   background-size: cover;
@@ -31,7 +31,7 @@ body {
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
-/* ===== CATEGORÍAS ===== */
+
 .categoria-card {
   transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
   cursor: pointer;
@@ -48,7 +48,7 @@ body {
   color: #dc3545;
 }
 
-/* ===== SCROLL HORIZONTAL TARJETAS ===== */
+
 .scroll-wrapper {
   position: relative;
 }
@@ -60,15 +60,15 @@ body {
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
   padding: 1rem 0;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; 
+  -ms-overflow-style: none; 
 }
 .scroll-container::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
+  display: none; 
 }
 
 .scroll-card {
-  flex: 0 0 clamp(220px, 70vw, 300px); /* responsive: min 220px, máx 300px */
+  flex: 0 0 clamp(220px, 70vw, 300px); 
   border: none;
   border-radius: 1rem;
   overflow: hidden;
@@ -85,7 +85,7 @@ body {
   width: 100%;
 }
 
-/* ===== BOTONES SCROLL ===== */
+
 .scroll-btn {
   position: absolute;
   top: 50%;
@@ -110,7 +110,7 @@ body {
   outline-offset: 3px;
 }
 
-/* ===== PLATOS ===== */
+
 .platos-container {
   display: flex;
   gap: 1rem;
@@ -124,7 +124,6 @@ body {
   display: none;
 }
 
-/* ===== ANIMACIONES ===== */
 @keyframes fadeInDown {
   from {
     opacity: 0;

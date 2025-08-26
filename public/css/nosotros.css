@@ -4,7 +4,7 @@ body {
   color: #333;
 }
 
-/* Foto del CEO */
+
 .profile-cover {
   background: linear-gradient(135deg, #ffcc70, #ff8c00);
   padding: 3rem 0;
@@ -20,7 +20,7 @@ body {
   transform: scale(1.05);
 }
 
-/* Cards */
+
 .card {
   border-radius: 15px;
   transition: transform 0.3s, box-shadow 0.3s;
@@ -31,7 +31,6 @@ body {
   box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
-/* Objetivos */
 .card ul li {
   margin-bottom: 10px;
   font-weight: 500;

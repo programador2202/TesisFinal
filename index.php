@@ -53,19 +53,17 @@
       <div class="container">
         <h2 class="text-center mb-4"><b>Explora por Categorías</b></h2>
         <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-4 justify-content-center">
-          <div class="col text-center">
-  <a href="views/comidaOriental.php" class="text-decoration-none text-dark">
-    <div class="card border-0 shadow-sm p-3 categoria-card">
-      <i class="fas fa-utensils categoria-icono"></i>
-      <div>Comida Oriental</div>
+
+
+          <div class="col text-center"><a href="views/comidaOriental.php" class="text-decoration-none text-dark"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-utensils categoria-icono"></i><div>Comida Oriental</div>
     </div>
   </a>
 </div>
 
+          <div class="col text-center"><a href="views/hamburguesa.php" class="text-decoration-none text-dark"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-hamburger categoria-icono"></i><div>Hamburguesas</div></div></a></div>
+          <div class="col text-center"><a href="views/marisco.php" class="text-decoration-none text-dark"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-fish categoria-icono"></i><div>Mariscos</div></div></a></div>
           <div class="col text-center"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-drumstick-bite categoria-icono"></i><div>Pollerías</div></div></div>
           <div class="col text-center"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-pizza-slice categoria-icono"></i><div>Pizzerías</div></div></div>
-          <div class="col text-center"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-hamburger categoria-icono"></i><div>Hamburguesas</div></div></div>
-          <div class="col text-center"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-fish categoria-icono"></i><div>Mariscos</div></div></div>
           <div class="col text-center"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-coffee categoria-icono"></i><div>Cafeterías</div></div></div>
           <div class="col text-center"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-fire categoria-icono"></i><div>Parrillas</div></div></div>
           <div class="col text-center"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-wine-glass-alt categoria-icono"></i><div>Vitivinícolas</div></div></div>
@@ -211,7 +209,7 @@
 
     function scrollRestaurantes(direction) {
       const container = document.getElementById('restaurantesScroll');
-      const cardWidth = container.querySelector('.scroll-card').offsetWidth + 16; // ancho + gap
+      const cardWidth = container.querySelector('.scroll-card').offsetWidth + 16; 
       container.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
     }
   </script>

@@ -17,6 +17,10 @@ switch ($method) {
                 echo json_encode($restaurante->getById($_GET['idrestaurante']));
             } elseif ($_GET["task"] == 'ListaOriental') {
                 echo json_encode($restaurante->ListaOriental());
+            } elseif ($_GET["task"] =='ListaHamburguesas'){
+                echo json_encode($restaurante->ListaHamburguesas());
+            } elseif ($_GET["task"] =='ListaMarisco'){
+                echo json_encode($restaurante->ListaMarisco());
             } else {
                 echo json_encode(["error" => "Parametro 'task' desconocido o faltan datos."]);
             }
@@ -48,7 +52,7 @@ switch ($method) {
             $rutaDestino = "../public/img/restaurantes/" . $nombreArchivo;
 
             if (move_uploaded_file($_FILES['img']['tmp_name'], $rutaDestino)) {
-                $imgPath = $nombreArchivo; // CORRECCIÓN: guardamos el nombre real en $imgPath
+                $imgPath = $nombreArchivo; 
             }
         }
 

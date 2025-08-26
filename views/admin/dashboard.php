@@ -9,7 +9,6 @@
 </head>
 
 <body>
-  <!----MENU PRINCIPAL--->
   <header>
 
   
@@ -33,7 +32,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item mx-2">
-              <a class="nav-link" href="datos.php"><i class="fas fa-home me-1"></i>Inicio</a>
+              <a class="nav-link" href="/index.php"><i class="fas fa-home me-1"></i>Inicio</a>
             </li>
             <li class="nav-item  mx-2">
               <a class="nav-link" href="categorias.php">
@@ -52,18 +51,16 @@
   </header>
 
 
-
-  <!-- Bootstrap JS (con Popper) -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-  <!-- Script para cerrar menú automáticamente en móvil -->
+
   <script>
     const navLinks = document.querySelectorAll('.nav-link');
     const navCollapse = document.getElementById('navbarSupportedContent');
 
     navLinks.forEach(link => {
       link.addEventListener('click', () => {
-        if (window.innerWidth < 992) { // solo en móviles
+        if (window.innerWidth < 992) { 
           const collapse = new bootstrap.Collapse(navCollapse, { toggle: false });
           collapse.hide();
         }
