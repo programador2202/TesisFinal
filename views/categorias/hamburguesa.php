@@ -6,12 +6,12 @@
   <title>Comida Oriental - Restaurante Sakura</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="../public/css/hamburguesa.css">
+  <link rel="stylesheet" href="../../public/css/hamburguesa.css">
 </head>
 <body>
 
 <!--- header -->
-<?php require_once '../views/partials/header.php'; ?>
+<?php require_once '../partials/header.php'; ?>
   <!-- HERO -->
   <section class="hero d-flex flex-column justify-content-center align-items-center">
     <h1><b>🍔🔥 BURGER EXPRESS 🔥🍟</b></h1>
@@ -24,7 +24,7 @@
   </div>
 </section>
 
-<?php  require_once '../views/partials/footer.php' ?>
+<?php  require_once '../partials/footer.php' ?>
 
 <script>
 // Cuando cargue la página, pedimos los restaurantes orientales

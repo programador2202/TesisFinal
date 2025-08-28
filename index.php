@@ -38,7 +38,7 @@
                 <button type="submit" class="btn btn-light w-100">Buscar</button>
               </div>
               <div class="col-md-3">
-                <button type="button" class="btn btn-warning w-100">
+                <button type="button" class="btn btn-primary w-100">
                   <i class="fas fa-location-arrow"></i> Usa mi ubicación
                 </button>
               </div>
@@ -55,13 +55,13 @@
         <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-4 justify-content-center">
 
 
-          <div class="col text-center"><a href="views/comidaOriental.php" class="text-decoration-none text-dark"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-utensils categoria-icono"></i><div>Comida Oriental</div>
+          <div class="col text-center"><a href="views/categorias/comidaOriental.php" class="text-decoration-none text-dark"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-utensils categoria-icono"></i><div>Comida Oriental</div>
     </div>
   </a>
 </div>
 
-          <div class="col text-center"><a href="views/hamburguesa.php" class="text-decoration-none text-dark"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-hamburger categoria-icono"></i><div>Hamburguesas</div></div></a></div>
-          <div class="col text-center"><a href="views/marisco.php" class="text-decoration-none text-dark"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-fish categoria-icono"></i><div>Mariscos</div></div></a></div>
+          <div class="col text-center"><a href="views/categorias/hamburguesa.php" class="text-decoration-none text-dark"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-hamburger categoria-icono"></i><div>Hamburguesas</div></div></a></div>
+          <div class="col text-center"><a href="views/categorias/marisco.php" class="text-decoration-none text-dark"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-fish categoria-icono"></i><div>Mariscos</div></div></a></div>
           <div class="col text-center"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-drumstick-bite categoria-icono"></i><div>Pollerías</div></div></div>
           <div class="col text-center"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-pizza-slice categoria-icono"></i><div>Pizzerías</div></div></div>
           <div class="col text-center"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-coffee categoria-icono"></i><div>Cafeterías</div></div></div>
@@ -88,7 +88,7 @@
               <div class="card-body d-flex flex-column">
                 <h5 class="card-title"><b>El Punto Marino</b></h5>
                 <p class="card-text">¡Explora el Encanto del Mar en el Punto Marino!</p>
-                <a href="#" class="btn btn-warning mt-auto"><b>Visitar</b></a>
+                <a href="views/restaurantes/ElPuntoMarino.php" class="btn btn-warning mt-auto"><b>Visitar</b></a>
               </div>
             </div>
 

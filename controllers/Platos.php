@@ -12,7 +12,10 @@ switch ($_SERVER["REQUEST_METHOD"]) {
                 echo json_encode($platos->getAll());
             } elseif ($_GET["task"] == 'getById' && isset($_GET['idplatos'])) {
                 echo json_encode($platos->getById($_GET['idplatos']));
-            } else {
+            } elseif ($_GET["task"] == 'ListaMariscos') {
+                echo json_encode($platos->ListaMariscos());
+            }
+            else {
                 echo json_encode(["error" => "Parámetro 'task' desconocido o faltan datos."]);
             }
         } else {

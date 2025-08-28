@@ -77,10 +77,10 @@ body {
   scroll-snap-align: start;
 }
 .scroll-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-10px);
 }
 .scroll-card img {
-  height: 180px;
+  height: 190px;
   object-fit: cover;
   width: 100%;
 }
@@ -89,7 +89,7 @@ body {
 .scroll-btn {
   position: absolute;
   top: 50%;
-  transform: translateY(-50%);
+  transform: translateY(-70%);
   background: #e19600;
   border: none;
   font-size: 2rem;
@@ -100,8 +100,8 @@ body {
   box-shadow: 0 2px 5px rgba(0,0,0,0.3);
   z-index: 10;
 }
-.scroll-btn.left { left: -25px; }
-.scroll-btn.right { right: -25px; }
+.scroll-btn.left { left: -30px; }
+.scroll-btn.right { right: -30px; }
 .scroll-btn:hover {
   background: #ffad09;
 }
