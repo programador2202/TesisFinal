@@ -15,7 +15,7 @@
     <nav class="navbar navbar-expand-lg bg-white shadow-sm py-2">
       <div class="container">
         <!-- Logo -->
-        <a class="navbar-brand d-flex align-items-center" href="/rutadelsabor/index.php">
+        <a class="navbar-brand d-flex align-items-center" href="/RutaDelSaborChincha123/index.php">
           <img src="/RutaDelSaborChincha123/public/img/inicio_logo.png" alt="" 
                width="130" height="55" class="me-2">
         </a>
@@ -33,13 +33,14 @@
             <li class="nav-item mx-2">
               <a class="nav-link" href="/RutaDelSaborChincha123/index.php"><i class="fas fa-home me-1"></i>Inicio</a>
             </li>
-            <li class="nav-item mx-2">
-              <a class="nav-link" href="/RutaDelSaborChincha123/views/nosotros.php"><i class="fas fa-users me-1"></i>Nosotros</a>
-            </li>
             <li class="nav-item  mx-2">
-              <a class="nav-link" href="/RutaDelSaborChincha123/views/categorias.php">
+              <a class="nav-link" href="#categoria">
                 <i class="fas fa-utensils me-1"></i> Categorías
               </a>
+
+              <li class="nav-item mx-2">
+              <a class="nav-link" href="/RutaDelSaborChincha123/views/nosotros.php"><i class="fas fa-users me-1"></i>Nosotros</a>
+            </li>
             </li>
             <li class="nav-item mx-2"><a class="nav-link" href="#"><i class="fas fa-wine-bottle me-1"></i> Vitinícolas</a></li>
             <li class="nav-item mx-2"><a class="nav-link" href="#"><i class="fas fa-blog me-1"></i> Blog</a></li>

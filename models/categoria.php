@@ -10,7 +10,8 @@ class categoria {
 
     // Obtener todas las categorías
     public function getAll() {
-        $stmt = $this->conexion->prepare("SELECT * FROM CATEGORIA");
+        $stmt = $this->conexion->prepare("SELECT * FROM categoria ORDER BY nombre ASC;
+");
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

@@ -28,7 +28,7 @@ SELECT * FROM CATEGORIA;
 CREATE TABLE RESTAURANTES(
     idrestaurante INT AUTO_INCREMENT PRIMARY KEY,
     idcategoria INT NOT NULL,
-    nom_restaurante UNIQUE VARCHAR(100) NOT NULL,
+    nom_restaurante  VARCHAR(100) UNIQUE NOT NULL,
     img VARCHAR(255) DEFAULT NULL,
     descripcion TEXT NOT NULL,
     direccion VARCHAR(500) NOT NULL,
@@ -69,7 +69,7 @@ WHERE r.idcategoria = 2;
 CREATE TABLE PLATOS(
     idplatos INT AUTO_INCREMENT PRIMARY KEY,
     imagen VARCHAR(255),
-    nom_platos UNIQUE VARCHAR(100) NOT NULL,
+    nom_platos  VARCHAR(100) UNIQUE NOT NULL,
     descripcion VARCHAR(500) NOT NULL,
     precio DECIMAL(7,2) NOT NULL,
     idrestaurante INT NOT NULL,

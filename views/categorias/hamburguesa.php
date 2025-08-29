@@ -18,7 +18,7 @@
   </section>
 
   <section id="menu" class="container py-5 menu-section">
-  <h2 class="text-center mb-4">Restaurantes De Hamburguesas</h2>
+  <h2 class="text-center mb-4">Hamburgueserias</h2>
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" id="platosContainer">
     <!-- Los restaurantes se cargarán dinámicamente aquí -->
   </div>

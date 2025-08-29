@@ -6,7 +6,7 @@
   <title>Comida Oriental - Restaurante Sakura</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="../../public/css/marisco.css">
+  <link rel="stylesheet" href="../../public/css/Polleria.css">
 </head>
 <body>
 
@@ -14,11 +14,11 @@
 <?php require_once '../partials/header.php'; ?>
   <!-- HERO -->
   <section class="hero d-flex flex-column justify-content-center align-items-center">
-    <h1><b>🐟🍤 SABOR MARINO 🌊🔥</b></h1>
+    <h1><b>🍕🔥🍴 Ruta de la Pizza 🍴🔥🍕</b></h1>
   </section>
 
   <section id="menu" class="container py-5 menu-section">
-  <h2 class="text-center mb-4">Pescados y Mariscos</h2>
+  <h2 class="text-center mb-4">Pizzeria</h2>
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4" id="platosContainer">
     <!-- Los restaurantes se cargarán dinámicamente aquí -->
   </div>
@@ -29,7 +29,7 @@
 <script>
 // Cuando cargue la página, pedimos los restaurantes orientales
 document.addEventListener("DOMContentLoaded", () => {
-  fetch("http://localhost/RutaDelSaborChincha123/controllers/Restaurantes.php?task=ListaMarisco")
+  fetch("http://localhost/RutaDelSaborChincha123/controllers/Restaurantes.php?task=ListaPizzeria")
     .then(response => response.json())
     .then(data => {
       const container = document.getElementById("platosContainer");
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
           container.insertAdjacentHTML("beforeend", card);
         });
       } else {
-        container.innerHTML = `<p class="text-center text-muted">No hay restaurantes orientales disponibles.</p>`;
+        container.innerHTML = `<p class="text-center text-muted">No hay Pizzerias disponibles.</p>`;
       }
     })
     .catch(error => {
