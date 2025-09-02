@@ -25,6 +25,10 @@ switch ($method) {
                 echo json_encode($restaurante->ListaPollerias());
             } elseif ($_GET["task"] == 'ListaPizzeria'){
                 echo json_encode($restaurante->ListaPizzeria());
+            } elseif ($_GET["task"] == 'ListaCafePastel'){
+                echo json_encode($restaurante->ListaCafePastel());
+            } elseif ($_GET["task"] =='ListaParrilla'){
+                echo json_encode($restaurante->ListaParrilla());
             }
             else {
                 echo json_encode(["error" => "Parametro 'task' desconocido o faltan datos."]);

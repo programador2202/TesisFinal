@@ -16,7 +16,7 @@
     <nav class="navbar navbar-expand-lg bg-white shadow-sm py-2">
       <div class="container">
         <!-- Logo -->
-        <a class="navbar-brand d-flex align-items-center" href="/rutadelsabor/index.php">
+        <a class="navbar-brand d-flex align-items-center" href="datos.php">
           <img src="/RutaDelSaborChincha123/public/img/inicio_logo.png" alt="" 
                width="130" height="55" class="me-2">
         </a>

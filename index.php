@@ -64,8 +64,8 @@
           <div class="col text-center"><a href="views/categorias/marisco.php" class="text-decoration-none text-dark"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-fish categoria-icono"></i><div>Mariscos</div></div></a></div>
           <div class="col text-center"><a href="views/categorias/Pollerias.php" class="text-decoration-none text-dark"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-drumstick-bite categoria-icono"></i><div>Pollerías</div></div></a></div>
           <div class="col text-center"><a href="views/categorias/pizzeria.php" class="text-decoration-none text-dark"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-pizza-slice categoria-icono"></i><div>Pizzerías</div></div></a></div>
-          <div class="col text-center"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-coffee categoria-icono"></i><div>Cafeterías</div></div></div>
-          <div class="col text-center"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-fire categoria-icono"></i><div>Parrillas</div></div></div>
+          <div class="col text-center"><a href="views/categorias/CafeteriaPasteleria.php" class="text-decoration-none text-dark"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-coffee categoria-icono"></i><div>Cafeterías Y Pastelerias</div></div></a></div>
+          <div class="col text-center"><a href="views/categorias/Parrillas.php" class="text-decoration-none text-dark"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-fire categoria-icono"></i><div>Parrillas</div></div></a></div>
           <div class="col text-center"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-wine-glass-alt categoria-icono"></i><div>Vitivinícolas</div></div></div>
         </div>
       </div>

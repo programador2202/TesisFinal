@@ -151,6 +151,40 @@ public function update($id, $nom_restaurante, $img, $descripcion, $direccion, $t
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+ public function ListaCafePastel() {
+    $stmt = $this->conexion->prepare("
+        SELECT 
+            r.idrestaurante,
+            r.nom_restaurante,
+            r.img,
+            r.descripcion,
+            r.direccion,
+            r.telefono,
+            c.nombre AS categoria
+        FROM RESTAURANTES r
+        INNER JOIN CATEGORIA c ON r.idcategoria = c.idcategoria
+        WHERE r.idcategoria = 8
+    ");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+ public function ListaParrilla() {
+    $stmt = $this->conexion->prepare("
+        SELECT 
+            r.idrestaurante,
+            r.nom_restaurante,
+            r.img,
+            r.descripcion,
+            r.direccion,
+            r.telefono,
+            c.nombre AS categoria
+        FROM RESTAURANTES r
+        INNER JOIN CATEGORIA c ON r.idcategoria = c.idcategoria
+        WHERE r.idcategoria = 9
+    ");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
 }
 ?>
