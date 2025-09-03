@@ -123,5 +123,25 @@ class Platos {
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function ListaGranCombo() {
+    $stmt = $this->conexion->prepare("
+            SELECT 
+            p.idplatos,
+            p.imagen,
+            p.nom_platos,
+            p.descripcion,
+            p.precio,
+            p.idrestaurante,
+            r.nom_restaurante,
+            r.direccion,
+            r.telefono
+        FROM PLATOS p
+        JOIN RESTAURANTES r ON p.idrestaurante = r.idrestaurante
+        WHERE p.idrestaurante = 3;
+    ");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
 }
 ?>

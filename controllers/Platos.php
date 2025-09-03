@@ -16,6 +16,9 @@ switch ($_SERVER["REQUEST_METHOD"]) {
                 echo json_encode($platos->ListaMariscos());
             } elseif ($_GET["task"] == 'ListaOriental') {
                 echo json_encode($platos->ListaOriental());
+            } elseif($_GET["task"] =='ListaGranCombo'){
+                echo json_encode($platos->ListaGranCombo());
+
             }
             else {
                 echo json_encode(["error" => "Parámetro 'task' desconocido o faltan datos."]);

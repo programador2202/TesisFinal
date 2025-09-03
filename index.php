@@ -66,7 +66,7 @@
           <div class="col text-center"><a href="views/categorias/pizzeria.php" class="text-decoration-none text-dark"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-pizza-slice categoria-icono"></i><div>Pizzerías</div></div></a></div>
           <div class="col text-center"><a href="views/categorias/CafeteriaPasteleria.php" class="text-decoration-none text-dark"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-coffee categoria-icono"></i><div>Cafeterías Y Pastelerias</div></div></a></div>
           <div class="col text-center"><a href="views/categorias/Parrillas.php" class="text-decoration-none text-dark"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-fire categoria-icono"></i><div>Parrillas</div></div></a></div>
-          <div class="col text-center"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-wine-glass-alt categoria-icono"></i><div>Vitivinícolas</div></div></div>
+          <div class="col text-center"><a href="views/categorias/Vitinicolas.php" class="text-decoration-none text-dark"><div class="card border-0 shadow-sm p-3 categoria-card"><i class="fas fa-wine-glass-alt categoria-icono"></i><div>Vitivinícolas</div></div></a></div>
         </div>
       </div>
     </section>
@@ -106,7 +106,7 @@
               <div class="card-body d-flex flex-column">
                 <h5 class="card-title"><b>El Gran Combo</b></h5>
                 <p class="card-text">Una experiencia gastronómica que celebra las ricas tradiciones culinarias.</p>
-                <a href="#" class="btn btn-warning mt-auto"><b>Visitar</b></a>
+                <a href="views/restaurantes/ElGranCombo.php" class="btn btn-warning mt-auto"><b>Visitar</b></a>
               </div>
             </div>
 
