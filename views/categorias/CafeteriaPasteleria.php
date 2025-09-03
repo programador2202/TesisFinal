@@ -25,45 +25,62 @@
 </section>
 
 <?php  require_once '../partials/footer.php' ?>
-
 <script>
-// Cuando cargue la página, pedimos los restaurantes orientales
 document.addEventListener("DOMContentLoaded", () => {
-  fetch("http://localhost/RutaDelSaborChincha123/controllers/Restaurantes.php?task=ListaCafePastel")
+  fetch("http://localhost/RutaDelSaborChincha123/controllers/Restaurantes.php?task=listarPorCategoria&idcategoria=8")
     .then(response => response.json())
     .then(data => {
       const container = document.getElementById("platosContainer");
-      container.innerHTML = ""; 
+      container.innerHTML = "";
+
+      function renderStars(rating) {
+        let stars = '';
+        for (let i = 1; i <= 5; i++) {
+          if (rating >= i) {
+            stars += '<i class="bi bi-star-fill text-warning"></i>';
+          } else if (rating >= i - 0.5) {
+            stars += '<i class="bi bi-star-half text-warning"></i>';
+          } else {
+            stars += '<i class="bi bi-star text-warning"></i>';
+          }
+        }
+        return stars;
+      }
 
       if (data.length > 0) {
         data.forEach(rest => {
+          // Convertimos a número para evitar problemas
+          const rating = Number(rest.promedio_calificacion) || 0;
+
           const card = `
             <div class="col">
               <div class="card menu-card h-100 shadow-sm">
-               <img src="http://localhost/RutaDelSaborChincha123/public/img/restaurantes/${rest.img}" 
-     class="card-img-top" alt="${rest.nom_restaurante}">
+                <img src="http://localhost/RutaDelSaborChincha123/public/img/restaurantes/${rest.img}" 
+                  class="card-img-top" alt="${rest.nom_restaurante}">
                 <div class="card-body">
                   <h5 class="card-title">${rest.nom_restaurante}</h5>
+                  <div class="mb-2">
+                    ${renderStars(rating)}
+                    <span class="ms-2 text-secondary fw-bold">${rating.toFixed(1)}</span>
+                    <span class="text-muted">(${rest.total_votos} votos)</span>
+                  </div>
                   <p class="card-text">${rest.descripcion}</p>
                   <p class="text-muted">
                     <i class="bi bi-geo-alt"></i> ${rest.direccion} <br>
                     <i class="bi bi-telephone"></i> ${rest.telefono}
                   </p>
                   <a href="restaurante.php?id=${rest.idrestaurante}" 
-               class="btn btn-warning mt-auto">
-             <b>Visitar Restaurante</b>            
-             </a>
+                    class="btn btn-warning mt-auto">
+                    <b>Visitar Restaurante</b>            
+                  </a>
                 </div>
               </div>
             </div>
-            
-
-            
           `;
           container.insertAdjacentHTML("beforeend", card);
         });
       } else {
-        container.innerHTML = `<p class="text-center text-muted">No hay Informacion disponibles.</p>`;
+        container.innerHTML = `<p class="text-center text-muted">No hay restaurantes orientales disponibles.</p>`;
       }
     })
     .catch(error => {
@@ -71,6 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 });
 </script>
+
 
 </body>
 </html>

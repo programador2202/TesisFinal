@@ -62,7 +62,7 @@ public function update($id, $nom_restaurante, $img, $descripcion, $direccion, $t
     }
 
   //obtener categoria de Comida Oriental
-   public function ListaOriental() {
+  public function listarPorCategoria($idcategoria) {
     $stmt = $this->conexion->prepare("
         SELECT 
             r.idrestaurante,
@@ -71,137 +71,19 @@ public function update($id, $nom_restaurante, $img, $descripcion, $direccion, $t
             r.descripcion,
             r.direccion,
             r.telefono,
-            c.nombre AS categoria
+            c.nombre AS categoria,
+            COALESCE(AVG(rc.calificacion), 0) AS promedio_calificacion,
+            COUNT(rc.idcalificacion) AS total_votos
         FROM RESTAURANTES r
         INNER JOIN CATEGORIA c ON r.idcategoria = c.idcategoria
-        WHERE r.idcategoria = 1
+        LEFT JOIN RESTAURANTE_CALIFICACION rc ON r.idrestaurante = rc.idrestaurantes
+        WHERE r.idcategoria = :idcategoria
+        GROUP BY r.idrestaurante
     ");
-    $stmt->execute();
+    $stmt->execute(['idcategoria' => $idcategoria]);
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-
- public function ListaHamburguesas() {
-    $stmt = $this->conexion->prepare("
-        SELECT 
-            r.idrestaurante,
-            r.nom_restaurante,
-            r.img,
-            r.descripcion,
-            r.direccion,
-            r.telefono,
-            c.nombre AS categoria
-        FROM RESTAURANTES r
-        INNER JOIN CATEGORIA c ON r.idcategoria = c.idcategoria
-        WHERE r.idcategoria = 2
-    ");
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
- public function ListaMarisco() {
-    $stmt = $this->conexion->prepare("
-        SELECT 
-            r.idrestaurante,
-            r.nom_restaurante,
-            r.img,
-            r.descripcion,
-            r.direccion,
-            r.telefono,
-            c.nombre AS categoria
-        FROM RESTAURANTES r
-        INNER JOIN CATEGORIA c ON r.idcategoria = c.idcategoria
-        WHERE r.idcategoria = 4
-    ");
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
- public function ListaPollerias() {
-    $stmt = $this->conexion->prepare("
-        SELECT 
-            r.idrestaurante,
-            r.nom_restaurante,
-            r.img,
-            r.descripcion,
-            r.direccion,
-            r.telefono,
-            c.nombre AS categoria
-        FROM RESTAURANTES r
-        INNER JOIN CATEGORIA c ON r.idcategoria = c.idcategoria
-        WHERE r.idcategoria = 3
-    ");
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
- public function ListaPizzeria() {
-    $stmt = $this->conexion->prepare("
-        SELECT 
-            r.idrestaurante,
-            r.nom_restaurante,
-            r.img,
-            r.descripcion,
-            r.direccion,
-            r.telefono,
-            c.nombre AS categoria
-        FROM RESTAURANTES r
-        INNER JOIN CATEGORIA c ON r.idcategoria = c.idcategoria
-        WHERE r.idcategoria = 10
-    ");
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
- public function ListaCafePastel() {
-    $stmt = $this->conexion->prepare("
-        SELECT 
-            r.idrestaurante,
-            r.nom_restaurante,
-            r.img,
-            r.descripcion,
-            r.direccion,
-            r.telefono,
-            c.nombre AS categoria
-        FROM RESTAURANTES r
-        INNER JOIN CATEGORIA c ON r.idcategoria = c.idcategoria
-        WHERE r.idcategoria = 8
-    ");
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
- public function ListaParrilla() {
-    $stmt = $this->conexion->prepare("
-        SELECT 
-            r.idrestaurante,
-            r.nom_restaurante,
-            r.img,
-            r.descripcion,
-            r.direccion,
-            r.telefono,
-            c.nombre AS categoria
-        FROM RESTAURANTES r
-        INNER JOIN CATEGORIA c ON r.idcategoria = c.idcategoria
-        WHERE r.idcategoria = 9
-    ");
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
- public function ListarVitinicolas() {
-    $stmt = $this->conexion->prepare("
-        SELECT 
-            r.idrestaurante,
-            r.nom_restaurante,
-            r.img,
-            r.descripcion,
-            r.direccion,
-            r.telefono,
-            c.nombre AS categoria
-        FROM RESTAURANTES r
-        INNER JOIN CATEGORIA c ON r.idcategoria = c.idcategoria
-        WHERE r.idcategoria = 12
-    ");
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
 
 }
 ?>

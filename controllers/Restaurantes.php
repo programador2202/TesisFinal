@@ -8,37 +8,31 @@ $method = $_SERVER['REQUEST_METHOD'];
 header("Content-type: application/json; charset=utf-8");
 
 switch ($method) {
+case "GET":
+    if (isset($_GET["task"])) {
+        if ($_GET["task"] == 'getAll') {
+            echo json_encode($restaurante->getAll());
 
-    case "GET":
-        if (isset($_GET["task"])) {
-            if ($_GET["task"] == 'getAll') {
-                echo json_encode($restaurante->getAll());
-            } elseif ($_GET["task"] == 'getById' && isset($_GET['idrestaurante'])) {
-                echo json_encode($restaurante->getById($_GET['idrestaurante']));
-            } elseif ($_GET["task"] == 'ListaOriental') {
-                echo json_encode($restaurante->ListaOriental());
-            } elseif ($_GET["task"] =='ListaHamburguesas'){
-                echo json_encode($restaurante->ListaHamburguesas());
-            } elseif ($_GET["task"] =='ListaMarisco'){
-                echo json_encode($restaurante->ListaMarisco());
-            } elseif ($_GET["task"] == 'ListaPollerias'){
-                echo json_encode($restaurante->ListaPollerias());
-            } elseif ($_GET["task"] == 'ListaPizzeria'){
-                echo json_encode($restaurante->ListaPizzeria());
-            } elseif ($_GET["task"] == 'ListaCafePastel'){
-                echo json_encode($restaurante->ListaCafePastel());
-            } elseif ($_GET["task"] =='ListaParrilla'){
-                echo json_encode($restaurante->ListaParrilla());
-            } elseif($_GET["task"]=='ListarVitinicolas'){
-                echo json_encode($restaurante->ListarVitinicolas());
+        } elseif ($_GET["task"] == 'getById' && isset($_GET['idrestaurante'])) {
+            echo json_encode($restaurante->getById($_GET['idrestaurante']));
+
+        } elseif ($_GET["task"] == 'listarPorCategoria' && isset($_GET['idcategoria'])) {
+            $data = $restaurante->listarPorCategoria($_GET['idcategoria']);
+
+            // Convertimos a número los valores que deben serlo
+            foreach ($data as &$row) {
+                $row['promedio_calificacion'] = (float) $row['promedio_calificacion'];
+                $row['total_votos'] = (int) $row['total_votos'];
             }
-            else {
-                echo json_encode(["error" => "Parametro 'task' desconocido o faltan datos."]);
-            }
-        } else {
-            echo json_encode(["error" => "Falta el parametro 'task'."]);
+
+            echo json_encode($data);
         }
-        break;
+    } else {
+        echo json_encode(["error" => "Falta el parametro 'task'."]);
+    }
+    break;
+
+
 
     case "POST":
         $task = $_POST["task"] ?? '';
@@ -122,3 +116,5 @@ switch ($method) {
         echo json_encode(["error" => "Método no permitido"]);
         break;
 }
+
+

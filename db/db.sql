@@ -99,4 +99,35 @@ FROM PLATOS p
 JOIN RESTAURANTES r ON p.idrestaurante = r.idrestaurante
 WHERE p.idrestaurante = 1;
 
+CREATE TABLE RESTAURANTE_CALIFICACION (
+  idcalificacion INT AUTO_INCREMENT PRIMARY KEY,
+  idrestaurantes INT NOT NULL,
+  calificacion DECIMAL(2,1) NOT NULL,
+  comentario VARCHAR(500) NOT NULL,
+  fecha DATE NOT NULL,
+  CONSTRAINT fk_restaurante_calif FOREIGN KEY (idrestaurantes) REFERENCES RESTAURANTES(idrestaurante)
+) ENGINE=INNODB;
 
+INSERT INTO RESTAURANTE_CALIFICACION (idrestaurantes, calificacion, comentario, fecha) VALUES
+(1, 4.5, 'Excelente atención y el ceviche muy fresco. ¡Recomendado!', '2025-09-01'),
+(2, 3.8, 'Buena comida oriental, pero el servicio fue un poco lento.', '2025-09-02'),
+(3, 5.0, 'El mejor lomo saltado que he probado en Chincha. Volveré pronto.', '2025-09');
+
+
+SELECT 
+    r.idrestaurante,
+    r.nom_restaurante,
+    r.direccion,
+    r.telefono,
+    AVG(rc.calificacion) AS promedio_calificacion
+FROM RESTAURANTES r
+LEFT JOIN RESTAURANTE_CALIFICACION rc ON r.idrestaurante = rc.idrestaurantes
+GROUP BY r.idrestaurante, r.nom_restaurante, r.direccion, r.telefono;
+
+
+SELECT 
+    r.*,
+    AVG(rc.calificacion) AS promedio_calificacion
+FROM RESTAURANTES r
+LEFT JOIN RESTAURANTE_CALIFICACION rc ON r.idrestaurante = rc.idrestaurantes
+GROUP BY r.idrestaurante;
