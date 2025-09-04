@@ -32,7 +32,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
             <li class="nav-item mx-2">
-              <a class="nav-link" href="/index.php"><i class="fas fa-home me-1"></i>Inicio</a>
+              <a class="nav-link" href="datos.php"><i class="fas fa-home me-1"></i>Inicio</a>
             </li>
             <li class="nav-item  mx-2">
               <a class="nav-link" href="categorias.php">

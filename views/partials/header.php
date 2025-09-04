@@ -47,7 +47,7 @@
             <li class="nav-item mx-2"><a class="nav-link" href="#"><i class="fab fa-facebook fa-lg"></i></a></li>
             <li class="nav-item mx-2"><a class="nav-link" href="#"><i class="fab fa-whatsapp fa-lg"></i></a></li>
             <li class="nav-item mx-2"><a class="nav-link" href="#"><i class="fab fa-tiktok fa-lg"></i></a></li>
-            <li class="nav-item mx-2"><a class="nav-link" href="/RutaDelSaborChincha123/views/admin/dashboard.php"><i class="fas fa-user-circle fa-lg"></i></a></li>
+            <li class="nav-item mx-2"><a class="nav-link" href="http://localhost/RutaDelSaborChincha123/views/admin/datos.php"><i class="fas fa-user-circle fa-lg"></i></a></li>
 
           </ul>
         </div>

@@ -162,6 +162,23 @@
 </section>
   </main>
 
+    <!-- Icono flotante de chat inteligente -->
+  <a href="#" id="chatbot-fab" title="Chat inteligente">
+    <i class="fas fa-robot"></i>
+  </a>
+  <!-- Chat flotante -->
+<div id="chatbot-window" style="display:none; position:fixed; bottom:100px; right:32px; width:320px; background:#fff; border-radius:16px; box-shadow:0 4px 16px rgba(0,0,0,0.2); z-index:10000; overflow:hidden;">
+  <div style="background:#007baf; color:#fff; padding:12px; font-weight:bold;">Chat Inteligente
+    <span style="float:right; cursor:pointer;" onclick="document.getElementById('chatbot-window').style.display='none'">&times;</span>
+  </div>
+  <div id="chatbot-messages" style="height:260px; overflow-y:auto; padding:10px; font-size:1rem;"></div>
+  <form id="chatbot-form" style="display:flex; border-top:1px solid #eee;">
+    <input type="text" id="chatbot-input" autocomplete="off" placeholder="Escribe tu consulta..." style="flex:1; border:none; padding:10px;">
+    <button type="submit" style="background:#007baf; color:#fff; border:none; padding:0 16px;">Enviar</button>
+  </form>
+</div>
+
+
   <!-- FOOTER -->
   <?php include 'views/partials/footer.php'; ?>
 
@@ -211,6 +228,39 @@
       const cardWidth = container.querySelector('.scroll-card').offsetWidth + 16; 
       container.scrollBy({ left: direction * cardWidth, behavior: 'smooth' });
     }
+
+
+  // Mostrar/ocultar chat al hacer click en el icono
+  document.getElementById('chatbot-fab').onclick = function(e) {
+    e.preventDefault();
+    var win = document.getElementById('chatbot-window');
+    win.style.display = win.style.display === 'none' ? 'block' : 'none';
+  };
+
+  // Manejo del chat
+  document.getElementById('chatbot-form').onsubmit = async function(e) {
+    e.preventDefault();
+    const input = document.getElementById('chatbot-input');
+    const msg = input.value.trim();
+    if(!msg) return;
+    addMessage('Tú', msg);
+    input.value = '';
+    // Enviar al backend PHP
+    const res = await fetch('controllers/chatbot.php', {
+      method: 'POST',
+      headers: {'Content-Type':'application/x-www-form-urlencoded'},
+      body: 'msg=' + encodeURIComponent(msg)
+    });
+    const data = await res.text();
+    addMessage('Bot', data);
+  };
+
+  function addMessage(sender, text) {
+    const box = document.getElementById('chatbot-messages');
+    box.innerHTML += `<div><b>${sender}:</b> ${text}</div>`;
+    box.scrollTop = box.scrollHeight;
+  }
+
   </script>
 </body>
 </html>

@@ -104,8 +104,8 @@
         const [categoriasRes, restaurantesRes, platosRes, usuariosRes] = await Promise.all([
           fetch('http://localhost/RutadelSaborChincha123/controllers/Categoria.php?task=getAll'),
           fetch('http://localhost/RutadelSaborChincha123/controllers/Restaurantes.php?task=getAll'),
-          fetch('http://localhost/RutadelSaborChincha123/controllers/Platos.php?task=getAll'),
-          fetch('http://localhost/RutadelSaborChincha123/controllers/Usuarios.php?task=getAll')
+          fetch('http://localhost/RutadelSaborChincha123/controllers/Platos.php?task=getAll')
+          //fetch('http://localhost/RutadelSaborChincha123/controllers/Usuarios.php?task=getAll')
         ]);
 
         const categorias = await categoriasRes.json() || [];
