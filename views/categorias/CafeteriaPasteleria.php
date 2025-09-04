@@ -80,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
           container.insertAdjacentHTML("beforeend", card);
         });
       } else {
-        container.innerHTML = `<p class="text-center text-muted">No hay restaurantes orientales disponibles.</p>`;
+        container.innerHTML = `<p class="text-center text-muted">No hay restaurantes Cafes Ni Pastelería disponibles.</p>`;
       }
     })
     .catch(error => {

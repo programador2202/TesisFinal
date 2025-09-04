@@ -1,8 +1,8 @@
 .marino-header {
   position: relative;
-  background-color: black;
+  background-color: rgb(0, 0, 0);
   /**background: url('../../public/img/pecera_multicolor.jpg') center center/cover no-repeat;**/
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.304);
+  box-shadow: 0 4px 16px rgba(255, 255, 255, 0.304);
   margin-bottom: 2rem;
   min-height: 400px;
   overflow: hidden;
@@ -12,7 +12,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 32, 64, 0.478);
+  /**  background: rgba(0, 32, 64, 0); **/
   border-radius: 20px;
   z-index: 1;
 }

@@ -3,30 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cevichería El Punto Marino</title>
+  <title>El Gran Combo</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-  <link rel="stylesheet" href="../../public/css/misterwok.css">
+  <link rel="stylesheet" href="../../public/css/Daito.css">
 </head>
 <body>
 
 <?php require_once '../partials/header.php'; ?>
-
 <section class="marino-header d-flex flex-column align-items-center justify-content-center text-center py-4">
-  <!---<img src="../../public/img/logo_misterwok.png" 
-       class="rounded-circle border-2 white shadow mb-2"
+  <!---<img src="../../public/img/Marca-de-daito.png" 
+       class="rounded-circle border border-3 border-light shadow mb-2"
        alt="Logo El Punto Marino"
-       width="250" height="250">-->
-       
-       <h1 class="text-white">🍣Comida Oriental MisterWok</h1>
+       style="width: 250px; height: 250px; object-fit: cover;">--->
+      <h1 class="text-white">🏞️🍷 VIÑEDOS SAN CARLOS! 🏞️🍷</h1>
 </section>
+
 
 
   <!-- PLATOS DESTACADOS -->
     <section class="container py-5" id="platosDestacados">
-        <h1 class="text-black fw-bold mt-2 text-center" style="z-index:2;">Restaurante MisterWok</h1>
+        <h1 class="text-black fw-bold mt-2 text-center" style="z-index:2;">Venta de VINOS</h1>
   <p class="lead text-black text-center"  style="z-index:2;">¡Frescura y sabor!</p>
   <br>
+  
   <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 mb-3" id="platosContainer">
     <!-- Los platos se cargarán dinámicamente aquí -->
   </div>
@@ -57,7 +57,7 @@
   // Función para cargar los platos desde el controller
   async function cargarPlatos() {
     try {
-      const response = await fetch('../../controllers/Platos.php?task=ListarPlatos&idrestaurante=2');
+      const response = await fetch('../../controllers/Platos.php?task=ListarPlatos&idrestaurante=8');
       const platos = await response.json();
 
       const container = document.getElementById('platosContainer');

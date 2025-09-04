@@ -12,7 +12,7 @@
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 32, 64, 0.478);
+ /**  background: rgba(0, 32, 64, 0); **/
   border-radius: 20px;
   z-index: 1;
 }
@@ -23,7 +23,7 @@
   border: 6px solid rgba(255, 255, 255, 0.736); 
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.7);
   background: transparent;
-  filter: contrast(1.0) brightness(1.10) drop-shadow(0 0 12px #ffffff91);
+  filter: contrast(1.0) brightness(1.10) drop-shadow(0 0 12px #ffffff);
 }
 
 #platosDestacados h1 {

@@ -115,7 +115,7 @@
               <div class="card-body d-flex flex-column">
                 <h5 class="card-title"><b>Daddy’s Truck’s Burger!</b></h5>
                 <p class="card-text">Una experiencia de comida rápida diferente en Chincha.</p>
-                <a href="#" class="btn btn-warning mt-auto"><b>Visitar</b></a>
+                <a href="views/restaurantes/DaddyTrick.php" class="btn btn-warning mt-auto"><b>Visitar</b></a>
               </div>
             </div>
 
@@ -124,7 +124,7 @@
               <div class="card-body d-flex flex-column">
                 <h5 class="card-title"><b>DAITO</b></h5>
                 <p class="card-text">Exquisita cocina Nikkei, mezcla de Perú y Japón.</p>
-                <a href="#" class="btn btn-warning mt-auto"><b>Visitar</b></a>
+                <a href="views/restaurantes/Daito.php" class="btn btn-warning mt-auto"><b>Visitar</b></a>
               </div>
             </div>
 

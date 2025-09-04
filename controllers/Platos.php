@@ -12,13 +12,8 @@ switch ($_SERVER["REQUEST_METHOD"]) {
                 echo json_encode($platos->getAll());
             } elseif ($_GET["task"] == 'getById' && isset($_GET['idplatos'])) {
                 echo json_encode($platos->getById($_GET['idplatos']));
-            } elseif ($_GET["task"] == 'ListaMariscos') {
-                echo json_encode($platos->ListaMariscos());
-            } elseif ($_GET["task"] == 'ListaOriental') {
-                echo json_encode($platos->ListaOriental());
-            } elseif($_GET["task"] =='ListaGranCombo'){
-                echo json_encode($platos->ListaGranCombo());
-
+            } elseif ($_GET["task"] == 'ListarPlatos' && isset($_GET['idrestaurante'])) {
+                echo json_encode($platos->ListarPlatos($_GET['idrestaurante']));
             }
             else {
                 echo json_encode(["error" => "Parámetro 'task' desconocido o faltan datos."]);

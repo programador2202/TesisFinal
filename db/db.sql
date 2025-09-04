@@ -1,4 +1,4 @@
--- Active: 1726418525214@@127.0.0.1@3306@sistema_ruta_del_sabor
+-- Active: 1746813142156@@127.0.0.1@3306@sistema_ruta_del_sabor
 CREATE DATABASE SISTEMA_RUTA_DEL_SABOR;
 
 USE SISTEMA_RUTA_DEL_SABOR;
@@ -131,3 +131,17 @@ SELECT
 FROM RESTAURANTES r
 LEFT JOIN RESTAURANTE_CALIFICACION rc ON r.idrestaurante = rc.idrestaurantes
 GROUP BY r.idrestaurante;
+
+SELECT 
+                p.idplatos,
+                p.imagen,
+                p.nom_platos,
+                p.descripcion,
+                p.precio,
+                p.idrestaurante,
+                r.nom_restaurante,
+                r.direccion,
+                r.telefono
+            FROM PLATOS p
+            JOIN RESTAURANTES r ON p.idrestaurante = r.idrestaurante
+            WHERE p.idrestaurante = 3;

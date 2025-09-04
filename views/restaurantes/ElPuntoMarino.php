@@ -13,10 +13,11 @@
 <?php require_once '../partials/header.php'; ?>
 
 <section class="marino-header d-flex flex-column align-items-center justify-content-center text-center py-4">
-  <img src="../../public/img/logo_marino_responsivo.png" 
+  <!---<img src="../../public/img/logo_marino_responsivo.png" 
        class="rounded-circle border-3 white shadow mb-3"
        alt="Logo El Punto Marino"
-       width="240" height="250">
+       width="240" height="250">-->
+       <h1 class="text-white">🐟🍤 EL PUNTO MARINO 🌊🔥</h1>
 </section>
 
 
@@ -55,7 +56,7 @@
   // Función para cargar los platos desde el controller
   async function cargarPlatos() {
     try {
-      const response = await fetch('../../controllers/Platos.php?task=ListaMariscos');
+      const response = await fetch('../../controllers/Platos.php?task=ListarPlatos&idrestaurante=1');
       const platos = await response.json();
 
       const container = document.getElementById('platosContainer');

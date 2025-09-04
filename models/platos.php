@@ -84,64 +84,25 @@ class Platos {
         return ['error' => 'Error al eliminar el plato'];
     }
 
-    public function ListaMariscos() {
-    $stmt = $this->conexion->prepare("
-            SELECT 
-            p.idplatos,
-            p.imagen,
-            p.nom_platos,
-            p.descripcion,
-            p.precio,
-            p.idrestaurante,
-            r.nom_restaurante,
-            r.direccion,
-            r.telefono
-        FROM PLATOS p
-        JOIN RESTAURANTES r ON p.idrestaurante = r.idrestaurante
-        WHERE p.idrestaurante = 1;
-    ");
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
 
-    public function ListaOriental() {
-    $stmt = $this->conexion->prepare("
+    public function ListarPlatos($idrestaurante) {
+        $stmt = $this->conexion->prepare("
             SELECT 
-            p.idplatos,
-            p.imagen,
-            p.nom_platos,
-            p.descripcion,
-            p.precio,
-            p.idrestaurante,
-            r.nom_restaurante,
-            r.direccion,
-            r.telefono
-        FROM PLATOS p
-        JOIN RESTAURANTES r ON p.idrestaurante = r.idrestaurante
-        WHERE p.idrestaurante = 2;
-    ");
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-    }
-
-    public function ListaGranCombo() {
-    $stmt = $this->conexion->prepare("
-            SELECT 
-            p.idplatos,
-            p.imagen,
-            p.nom_platos,
-            p.descripcion,
-            p.precio,
-            p.idrestaurante,
-            r.nom_restaurante,
-            r.direccion,
-            r.telefono
-        FROM PLATOS p
-        JOIN RESTAURANTES r ON p.idrestaurante = r.idrestaurante
-        WHERE p.idrestaurante = 3;
-    ");
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+                p.idplatos,
+                p.imagen,
+                p.nom_platos,
+                p.descripcion,
+                p.precio,
+                p.idrestaurante,
+                r.nom_restaurante,
+                r.direccion,
+                r.telefono
+            FROM PLATOS p
+            JOIN RESTAURANTES r ON p.idrestaurante = r.idrestaurante
+            WHERE p.idrestaurante = ?
+        ");
+        $stmt->execute([$idrestaurante]);
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 }
 ?>

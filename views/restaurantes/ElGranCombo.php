@@ -12,10 +12,11 @@
 
 <?php require_once '../partials/header.php'; ?>
 <section class="marino-header d-flex flex-column align-items-center justify-content-center text-center py-4">
-  <img src="../../public/img/logo_gran_combo.png" 
-       class="rounded-circle border border-2 border-light shadow mb-2"
+  <!---<img src="../../public/img/logo_gran_combo.png" 
+       class="rounded-circle border border-3 border-light shadow mb-2"
        alt="Logo El Punto Marino"
-       style="width: 250px; height: 250px; object-fit: cover;">
+       style="width: 250px; height: 250px; object-fit: cover;">-->
+       <h1 class="text-white">🍣El Gran Combo🍣</h1>
 </section>
 
 
@@ -55,7 +56,7 @@
   // Función para cargar los platos desde el controller
   async function cargarPlatos() {
     try {
-      const response = await fetch('../../controllers/Platos.php?task=ListaGranCombo');
+      const response = await fetch('../../controllers/Platos.php?task=ListarPlatos&idrestaurante=3');
       const platos = await response.json();
 
       const container = document.getElementById('platosContainer');
